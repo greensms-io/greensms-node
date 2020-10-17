@@ -1,0 +1,30 @@
+{
+  "name": "greensms",
+  "version": "1.0.0",
+  "description": "Green SMS helper library",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greensms-ru/greensms-node.git"
+  },
+  "keywords": [
+    "green-sms",
+    "greensms",
+    "sms",
+    "rest",
+    "api"
+  ],
+  "author": "GreenSMS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greensms-ru/greensms-node/issues"
+  },
+  "homepage": "https://github.com/greensms-ru/greensms-node#readme"
+}
