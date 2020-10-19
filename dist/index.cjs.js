@@ -1,0 +1,1 @@
+"use strict";module.exports=class{constructor(s){s=s||{};const{username:e,password:o,token:t,useTokenForRequests:r}=s;if(this.token=null,t&&(this.token=t),!(this.token||e&&o))throw new Error("Either User/Pass or Auth Token is required!");console.log("Success 1")}};

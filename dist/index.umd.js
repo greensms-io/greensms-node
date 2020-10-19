@@ -1,0 +1,1 @@
+var GreenSMS=function(){"use strict";return class{constructor(e){e=e||{};const{username:s,password:r,token:o,useTokenForRequests:t}=e;if(this.token=null,o&&(this.token=o),!(this.token||s&&r))throw new Error("Either User/Pass or Auth Token is required!");console.log("Success 1")}}}();

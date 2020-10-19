@@ -1,0 +1,1 @@
+export default class{constructor(e){e=e||{};const{username:s,password:o,token:t,useTokenForRequests:r}=e;if(this.token=null,t&&(this.token=t),!(this.token||s&&o))throw new Error("Either User/Pass or Auth Token is required!");console.log("Success 1")}}

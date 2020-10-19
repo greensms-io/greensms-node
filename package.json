@@ -41,6 +41,7 @@
   },
   "homepage": "https://github.com/greensms-ru/greensms-node#readme",
   "dependencies": {
+    "@babel/preset-flow": "^7.12.1",
     "axios": "^0.20.0",
     "lodash": "^4.17.20",
     "q": "^1.5.1",
@@ -48,6 +49,7 @@
     "url-parse": "^1.4.7",
     "xmlbuilder": "^15.1.1"
   },
+  "types": "./dist/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/eslint-parser": "^7.12.1",
@@ -55,11 +57,14 @@
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "eslint": "^7.11.0",
+    "flow-bin": "^0.136.0",
     "jsdoc": "^3.6.6",
     "jshint": "^2.12.0",
     "rollup": "^2.32.0",
+    "rollup-plugin-dts": "^1.4.13",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-filesize": "^9.0.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.0.3"
   }
 }
