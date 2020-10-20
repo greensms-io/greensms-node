@@ -130,3 +130,29 @@ const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
 //   console.error("HLR Status Error", err);
 // });
 
+// const payParams = {
+//   to: '919987409698',
+//   amount: 10
+// };
+// greenSms.payment.sendPayment(payParams).then((data) => console.log("Send Payment Data", data)).catch(err => console.error("Send Payment Error", err));
+
+// const paymentStatusParams = {
+//   id: '60f231d9-16ec-4313-842e-6e6853063482'
+// };
+
+// greenSms.payment.fetchStatus(paymentStatusParams).then((data)=> {
+//   console.error("Payment Status Data", data);
+// }).catch(err => {
+//   console.error("Payment Status Error", err);
+// });
+
+
+const lookupParams = {
+  to: '919987409698',
+};
+
+// greenSms.general.lookup(lookupParams).then((data) => console.log("Lookup Data", data)).catch(err => console.error("Lookup Error", err));
+// greenSms.general.serverStatus().then(data => console.log("Status Data", data)).catch(err => console.error("Status Error", err));
+
+// GreenSMS.lookup(lookupParams).then((data) => console.log("Lookup Data", data)).catch(err => console.error("Lookup Error", err));
+GreenSMS.serverStatus().then(data => console.log("Status Data", data)).catch(err => console.error("Status Error", err));
