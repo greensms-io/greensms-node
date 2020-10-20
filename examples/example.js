@@ -83,3 +83,18 @@ const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
 // .catch((err) => {
 //   console.error("Status Viber Error", err);
 // });
+
+const callVerificationParams = {
+  to: '919987409698',
+};
+
+// greenSms.call.sendCallVerification(callVerificationParams).then((data) => console.log("Send Call Data", data)).catch(err => console.error("Send Call Error", err));
+
+const callStatusParams = {
+  id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55'
+};
+greenSms.call.fetchStatus(callStatusParams).then((data)=> {
+  console.error("Call Send Data", data);
+}).catch(err => {
+  console.error("Call Status Error", err);
+});
