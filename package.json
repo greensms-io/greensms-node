@@ -42,6 +42,7 @@
   "homepage": "https://github.com/greensms-ru/greensms-node#readme",
   "dependencies": {
     "axios": "^0.20.0",
+    "humps": "^2.0.1",
     "lodash": "^4.17.20",
     "qs": "^6.9.4",
     "urijs": "^1.19.2"
