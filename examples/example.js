@@ -18,22 +18,31 @@ greenSms.account
     console.error("Balance Error", err);
   });
 
+
+const tokenParams = {
+  expire: 100, // Optional
+};
 greenSms.account
-  .fetchToken().then((data) => {
+  .fetchToken(tokenParams).then((data) => {
     console.log("Token Data", data);
   }).catch((err) => {
     console.error("Token Error", err);
   });
 
+greenSms.account.fetchTariff().then((data) => {
+  console.error("Tariff Data", data);
+}).catch((err) => {
+  console.error("Tariff Error", err);
+})
 
-greenSms.sms
-  .sendMessage()
-  .then((data) => {
-    console.log("Data", data);
-  })
-  .catch((err) => {
-    console.error("Error", err);
-  });
+// greenSms.sms
+//   .sendMessage()
+//   .then((data) => {
+//     console.log("Data", data);
+//   })
+//   .catch((err) => {
+//     console.error("Error", err);
+//   });
 
 
 
