@@ -38,7 +38,6 @@ const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
 //   .sendMessage({
 //     to: '919987409698',
 //     txt: 'Here is your message for delivery',
-//     from: 'DOMINO'
 //   })
 //   .then((data) => {
 //     console.log("Send SMS Data", data);
@@ -47,17 +46,40 @@ const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
 //     console.error("Send SMS Error", err);
 //   });
 
-const smsStatusParams = {
-  id: 'dc2bac6d-f375-4e19-9a02-ef0148991635', // 'be43b1a3-c424-4c68-8ba9-cb09266a0b03', // 
-  extended: true
-};
-greenSms.sms.fetchStatus(smsStatusParams)
-.then((data) => {
-  console.log("Send SMS Data", data);
-})
-.catch((err) => {
-  console.error("Send SMS Error", err);
-});
+// const smsStatusParams = {
+//   id: 'dc2bac6d-f375-4e19-9a02-ef0148991635', // 'be43b1a3-c424-4c68-8ba9-cb09266a0b03', //
+//   extended: true
+// };
+// greenSms.sms.fetchStatus(smsStatusParams)
+// .then((data) => {
+//   console.log("Send SMS Data", data);
+// })
+// .catch((err) => {
+//   console.error("Send SMS Error", err);
+// });
 
 
 
+// greenSms.viber
+//   .sendMessage({
+//     to: '919987409698',
+//     txt: 'Here is your message for delivery',
+//   })
+//   .then((data) => {
+//     console.log("Send Viber Data", data);
+//   })
+//   .catch((err) => {
+//     console.error("Send Viber Error", err);
+//   });
+
+// const viberStatusParams = {
+//   id: '0b18fab4-0c5d-4a8b-8ee4-057a59596c7d',
+//   extended: true
+// };
+// greenSms.viber.fetchStatus(viberStatusParams)
+// .then((data) => {
+//   console.log("Status Viber Data", data);
+// })
+// .catch((err) => {
+//   console.error("Status Viber Error", err);
+// });
