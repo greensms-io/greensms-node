@@ -6,8 +6,11 @@ const GreenSMS = require("../dist/index.cjs.js");
 
 const username = process.env.GREEN_SMS_USERNAME;
 const password = process.env.GREEN_SMS_PASSWORD;
+const greenSmsInstance = new GreenSMS({ username, password, camelCaseResponse: true  });
 
-const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
+module.exports = {
+  GreenSMS, greenSmsInstance
+};
 
 // greenSms.account
 //   .fetchBalance()
@@ -145,14 +148,3 @@ const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
 // }).catch(err => {
 //   console.error("Payment Status Error", err);
 // });
-
-
-const lookupParams = {
-  to: '919987409698',
-};
-
-// greenSms.general.lookup(lookupParams).then((data) => console.log("Lookup Data", data)).catch(err => console.error("Lookup Error", err));
-// greenSms.general.serverStatus().then(data => console.log("Status Data", data)).catch(err => console.error("Status Error", err));
-
-// GreenSMS.lookup(lookupParams).then((data) => console.log("Lookup Data", data)).catch(err => console.error("Lookup Error", err));
-GreenSMS.serverStatus().then(data => console.log("Status Data", data)).catch(err => console.error("Status Error", err));
