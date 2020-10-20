@@ -27,14 +27,14 @@ export default [
         file: pkg.module,
         format: "esm", // the preferred format
         exports: "auto",
-        name: pkg.moduleName,
+        name: pkg.settings.moduleName,
         compact: true,
       },
       {
         file: pkg.browser,
         format: "iife",
         exports: "auto",
-        name: pkg.moduleName, // the global which can be used in a browser
+        name: pkg.settings.moduleName, // the global which can be used in a browser
         compact: true,
       },
     ],
@@ -42,7 +42,6 @@ export default [
     plugins: [
       resolve(),
       commonjs(),
-      terser(),
       filesize(),
       babel({
         babelHelpers: "bundled",
@@ -53,6 +52,9 @@ export default [
         fix: true,
         // throwOnError: true,
       }),
+      ...pkg.settings.minify ? [
+        terser()
+      ]:[]
     ],
   },
 ];
