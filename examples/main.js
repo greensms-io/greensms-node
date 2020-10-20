@@ -1,1 +1,0 @@
-var greensms = new GreenSMS();
