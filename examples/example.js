@@ -84,17 +84,33 @@ const greenSms = new GreenSMS({ username, password, camelCaseResponse: true  });
 //   console.error("Status Viber Error", err);
 // });
 
-const callVerificationParams = {
-  to: '919987409698',
-};
+// const callVerificationParams = {
+//   to: '919987409698',
+// };
 
 // greenSms.call.sendCallVerification(callVerificationParams).then((data) => console.log("Send Call Data", data)).catch(err => console.error("Send Call Error", err));
 
-const callStatusParams = {
-  id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55'
-};
-greenSms.call.fetchStatus(callStatusParams).then((data)=> {
-  console.error("Call Send Data", data);
-}).catch(err => {
-  console.error("Call Status Error", err);
-});
+// const callStatusParams = {
+//   id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55'
+// };
+// greenSms.call.fetchStatus(callStatusParams).then((data)=> {
+//   console.error("Call Send Data", data);
+// }).catch(err => {
+//   console.error("Call Status Error", err);
+// });
+
+// const voiceParams = {
+//   to: '919987409698',
+//   txt: 1234
+// };
+// greenSms.voice.sendMessage(voiceParams).then((data) => console.log("Send Voice Data", data)).catch(err => console.error("Send Voice Error", err));
+
+// const callStatusParams = {
+//   id: '41f23094-deda-4cab-ac9c-3ab4f2fee9e6'
+// };
+// greenSms.voice.fetchStatus(callStatusParams).then((data)=> {
+//   console.error("Voice Status Data", data);
+// }).catch(err => {
+//   console.error("Voice Status Error", err);
+// });
+
