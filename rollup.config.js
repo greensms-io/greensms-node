@@ -1,6 +1,6 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel";
+import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 import filesize from "rollup-plugin-filesize";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
@@ -29,24 +29,15 @@ export default [
         exports: "auto",
         name: pkg.settings.moduleName,
         compact: true,
-      },
-      {
-        file: pkg.browser,
-        format: "iife",
-        exports: "auto",
-        name: pkg.settings.moduleName, // the global which can be used in a browser
-        compact: true,
-      },
+      }
     ],
     external: [...Object.keys(pkg.dependencies || {})],
     plugins: [
       resolve(),
       commonjs(),
       filesize(),
-      babel({
-        babelHelpers: "bundled",
-        inputSourceMap: true,
-        sourceMaps: true,
+      getBabelOutputPlugin({
+        presets: ['@babel/preset-env']
       }),
       eslint({
         fix: true,
