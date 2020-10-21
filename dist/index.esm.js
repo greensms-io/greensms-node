@@ -20,17 +20,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -46,6 +46,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 import _ from 'lodash';
 import URI from 'urijs';
+import { object, number, string, boolean as _boolean } from 'yup';
 import axios from 'axios';
 import humps from 'humps';
 import qs from 'qs'; //#region  General
@@ -142,6 +143,45 @@ var buildUrl = function buildUrl(baseUrl) {
   return uri;
 };
 
+var validate = function validate(yupSchema, objData) {
+  try {
+    yupSchema.validateSync(objData, {
+      strict: true,
+      stripUnknown: true,
+      abortEarly: false
+    });
+    return null;
+  } catch (err) {
+    var errors = [];
+
+    if (err.inner && err.inner.length > 0) {
+      err.inner.forEach(function (error) {
+        errors.push(error);
+      });
+    } else {
+      errors.push(getError(err));
+    }
+
+    return {
+      code: 1,
+      error: 'Validation Error',
+      params: errors
+    };
+  }
+};
+
+function getError(err) {
+  return _objectSpread(_objectSpread({}, err.params), {}, {
+    message: err.message
+  });
+}
+
+var AccountSchema = {
+  token: object().shape({
+    expire: number().positive().integer()
+  })
+};
+
 var AccountV1 = /*#__PURE__*/function () {
   function AccountV1(opts) {
     _classCallCheck(this, AccountV1);
@@ -183,6 +223,12 @@ var AccountV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var error = validate(AccountSchema[functionName], params);
+
+        if (error) {
+          return reject(error);
+        }
+
         _this2.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -256,6 +302,20 @@ var Account = /*#__PURE__*/function () {
   return Account;
 }();
 
+var SmsSchema = {
+  send: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/),
+    txt: string().required().min(1),
+    from: string().min(1),
+    tag: string().min(1),
+    hidden: string().min(1)
+  }),
+  status: object().shape({
+    id: string().required().length(36),
+    extended: _boolean()
+  })
+};
+
 var SmsV1 = /*#__PURE__*/function () {
   function SmsV1(opts) {
     _classCallCheck(this, SmsV1);
@@ -273,6 +333,12 @@ var SmsV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(SmsSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this4.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -303,6 +369,12 @@ var SmsV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(SmsSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this5.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -356,6 +428,19 @@ var Sms = /*#__PURE__*/function () {
   return Sms;
 }();
 
+var ViberSchema = {
+  send: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/),
+    txt: string().required().min(1),
+    from: string().min(1),
+    cascade: string().oneOf(['sms', 'voice'])
+  }),
+  status: object().shape({
+    id: string().required().length(36),
+    extended: _boolean()
+  })
+};
+
 var ViberV1 = /*#__PURE__*/function () {
   function ViberV1(opts) {
     _classCallCheck(this, ViberV1);
@@ -373,6 +458,12 @@ var ViberV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(ViberSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this6.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -403,6 +494,12 @@ var ViberV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(ViberSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this7.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -456,6 +553,16 @@ var Viber = /*#__PURE__*/function () {
   return Viber;
 }();
 
+var CallSchema = {
+  send: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/)
+  }),
+  status: object().shape({
+    id: string().required().length(36),
+    extended: _boolean()
+  })
+};
+
 var CallV1 = /*#__PURE__*/function () {
   function CallV1(opts) {
     _classCallCheck(this, CallV1);
@@ -473,6 +580,12 @@ var CallV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(CallSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this8.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -503,6 +616,12 @@ var CallV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(CallSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this9.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -556,6 +675,18 @@ var Call = /*#__PURE__*/function () {
   return Call;
 }();
 
+var VoiceSchema = {
+  send: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/),
+    txt: string().required().min(1).max(5).matches(/^\d+$/),
+    lang: string().oneOf(['ru', 'en'])
+  }),
+  status: object().shape({
+    id: string().required().length(36),
+    extended: _boolean()
+  })
+};
+
 var VoiceV1 = /*#__PURE__*/function () {
   function VoiceV1(opts) {
     _classCallCheck(this, VoiceV1);
@@ -573,6 +704,12 @@ var VoiceV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(VoiceSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this10.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -603,6 +740,12 @@ var VoiceV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(VoiceSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this11.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -656,6 +799,16 @@ var Voice = /*#__PURE__*/function () {
   return Voice;
 }();
 
+var HlrSchema = {
+  send: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/)
+  }),
+  status: object().shape({
+    id: string().required().length(36),
+    extended: _boolean()
+  })
+};
+
 var HlrV1 = /*#__PURE__*/function () {
   function HlrV1(opts) {
     _classCallCheck(this, HlrV1);
@@ -673,6 +826,12 @@ var HlrV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(HlrSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this12.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -703,6 +862,12 @@ var HlrV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(HlrSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this13.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -756,6 +921,17 @@ var Hlr = /*#__PURE__*/function () {
   return Hlr;
 }();
 
+var PaySchema = {
+  send: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/),
+    amount: number().required().min(1).positive()
+  }),
+  status: object().shape({
+    id: string().required().length(36),
+    extended: _boolean()
+  })
+};
+
 var PaymentV1 = /*#__PURE__*/function () {
   function PaymentV1(opts) {
     _classCallCheck(this, PaymentV1);
@@ -773,6 +949,12 @@ var PaymentV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(PaySchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this14.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_POST,
@@ -803,6 +985,12 @@ var PaymentV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, this.moduleName, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(PaySchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this15.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -856,6 +1044,12 @@ var Payment = /*#__PURE__*/function () {
   return Payment;
 }();
 
+var GeneralSchema = {
+  lookup: object().shape({
+    to: string().required().min(11).max(14).matches(/^\d+$/)
+  })
+};
+
 var GeneralV1 = /*#__PURE__*/function () {
   function GeneralV1(opts) {
     _classCallCheck(this, GeneralV1);
@@ -872,6 +1066,12 @@ var GeneralV1 = /*#__PURE__*/function () {
       params = params || {};
       var apiUrl = buildUrl(this.options.baseUrl, MODULE_WHOIS, functionName);
       var promise = new Promise(function (resolve, reject) {
+        var errors = validate(GeneralSchema[functionName], params);
+
+        if (errors) {
+          return reject(errors);
+        }
+
         _this16.options.restClient.request({
           uri: apiUrl,
           method: API_METHOD_GET,
@@ -974,7 +1174,7 @@ var RestError = /*#__PURE__*/function (_Error) {
     _this18 = _super.call(this, errorMessage);
 
     if (!(error instanceof Error)) {
-      _this18.name = 'RestError';
+      _this18.name = error.name || 'RestError';
       _this18.code = error.code;
     }
 
@@ -984,6 +1184,11 @@ var RestError = /*#__PURE__*/function (_Error) {
     var errorType = _this18.getErrorType(_this18.code);
 
     _this18.errorType = errorType;
+
+    if (error.params) {
+      _this18.params = error.params;
+    }
+
     return _this18;
   }
 
