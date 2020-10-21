@@ -164,6 +164,12 @@ var buildUrl = function buildUrl(baseUrl) {
   uri = uri.toString();
   return uri;
 };
+/**
+* Returns an Error object validating data against a schema
+* @param {Yup} yupSchema - Yup schema with rules
+* @param {object} objData - Data object to validate
+*/
+
 
 var validate = function validate(yupSchema, objData) {
   try {
@@ -1393,6 +1399,11 @@ var RestClient = /*#__PURE__*/function () {
 
   return RestClient;
 }();
+/**
+* Returns Version from VersionMap
+* @param {string} version - Input Version as V1, V2, etc.
+*/
+
 
 var getVersion = function getVersion(version) {
   if (!version) {
