@@ -304,7 +304,7 @@ var Account = /*#__PURE__*/function () {
 
 var SmsSchema = {
   send: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/),
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
     txt: string().required().min(1),
     from: string().min(1),
     tag: string().min(1),
@@ -430,7 +430,7 @@ var Sms = /*#__PURE__*/function () {
 
 var ViberSchema = {
   send: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/),
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
     txt: string().required().min(1),
     from: string().min(1),
     cascade: string().oneOf(['sms', 'voice'])
@@ -555,7 +555,7 @@ var Viber = /*#__PURE__*/function () {
 
 var CallSchema = {
   send: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/)
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
   }),
   status: object().shape({
     id: string().required().length(36),
@@ -677,8 +677,8 @@ var Call = /*#__PURE__*/function () {
 
 var VoiceSchema = {
   send: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/),
-    txt: string().required().min(1).max(5).matches(/^\d+$/),
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+    txt: string().required().min(1).max(5).matches(/^\d+$/, 'Invalid Code'),
     lang: string().oneOf(['ru', 'en'])
   }),
   status: object().shape({
@@ -801,7 +801,7 @@ var Voice = /*#__PURE__*/function () {
 
 var HlrSchema = {
   send: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/)
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
   }),
   status: object().shape({
     id: string().required().length(36),
@@ -923,7 +923,7 @@ var Hlr = /*#__PURE__*/function () {
 
 var PaySchema = {
   send: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/),
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
     amount: number().required().min(1).positive()
   }),
   status: object().shape({
@@ -1046,7 +1046,7 @@ var Payment = /*#__PURE__*/function () {
 
 var GeneralSchema = {
   lookup: object().shape({
-    to: string().required().min(11).max(14).matches(/^\d+$/)
+    to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
   })
 };
 

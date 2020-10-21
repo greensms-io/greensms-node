@@ -326,7 +326,7 @@ var Account = /*#__PURE__*/function () {
 
 var SmsSchema = {
   send: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/),
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
     txt: Yup.string().required().min(1),
     from: Yup.string().min(1),
     tag: Yup.string().min(1),
@@ -452,7 +452,7 @@ var Sms = /*#__PURE__*/function () {
 
 var ViberSchema = {
   send: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/),
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
     txt: Yup.string().required().min(1),
     from: Yup.string().min(1),
     cascade: Yup.string().oneOf(['sms', 'voice'])
@@ -577,7 +577,7 @@ var Viber = /*#__PURE__*/function () {
 
 var CallSchema = {
   send: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/)
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
   }),
   status: Yup.object().shape({
     id: Yup.string().required().length(36),
@@ -699,8 +699,8 @@ var Call = /*#__PURE__*/function () {
 
 var VoiceSchema = {
   send: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/),
-    txt: Yup.string().required().min(1).max(5).matches(/^\d+$/),
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+    txt: Yup.string().required().min(1).max(5).matches(/^\d+$/, 'Invalid Code'),
     lang: Yup.string().oneOf(['ru', 'en'])
   }),
   status: Yup.object().shape({
@@ -823,7 +823,7 @@ var Voice = /*#__PURE__*/function () {
 
 var HlrSchema = {
   send: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/)
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
   }),
   status: Yup.object().shape({
     id: Yup.string().required().length(36),
@@ -945,7 +945,7 @@ var Hlr = /*#__PURE__*/function () {
 
 var PaySchema = {
   send: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/),
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
     amount: Yup.number().required().min(1).positive()
   }),
   status: Yup.object().shape({
@@ -1068,7 +1068,7 @@ var Payment = /*#__PURE__*/function () {
 
 var GeneralSchema = {
   lookup: Yup.object().shape({
-    to: Yup.string().required().min(11).max(14).matches(/^\d+$/)
+    to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
   })
 };
 
