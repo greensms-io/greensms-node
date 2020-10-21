@@ -146,7 +146,7 @@ var buildUrl = function buildUrl(baseUrl) {
 var validate = function validate(yupSchema, objData) {
   try {
     yupSchema.validateSync(objData, {
-      strict: true,
+      strict: false,
       stripUnknown: true,
       abortEarly: false
     });
