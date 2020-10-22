@@ -13,9 +13,6 @@
   // Define globals exposed by Node.js.
   "node": true,
 
-  // Allow ES6.
-  "esnext": true,
-
   // Allow tests.
   "jasmine": true,
 
@@ -61,5 +58,7 @@
    */
 
   // Suppress warnings about == null comparisons.
-  "eqnull": true
+  "eqnull": true,
+
+  "esversion": 9
 }

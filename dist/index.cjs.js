@@ -46,11 +46,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _ = require('lodash'),
-    URI = require('urijs'),
+var URI = require('urijs'),
     Yup = require('yup'),
     axios = require('axios'),
     humps = require('humps'),
+    _ = require('lodash'),
     qs = require('qs');
 
 function _interopDefaultLegacy(e) {
@@ -59,13 +59,13 @@ function _interopDefaultLegacy(e) {
   };
 }
 
-var ___default = /*#__PURE__*/_interopDefaultLegacy(_);
-
 var URI__default = /*#__PURE__*/_interopDefaultLegacy(URI);
 
 var axios__default = /*#__PURE__*/_interopDefaultLegacy(axios);
 
 var humps__default = /*#__PURE__*/_interopDefaultLegacy(humps);
+
+var ___default = /*#__PURE__*/_interopDefaultLegacy(_);
 
 var qs__default = /*#__PURE__*/_interopDefaultLegacy(qs); //#region  General
 
@@ -1186,6 +1186,10 @@ var RestError = /*#__PURE__*/function (_Error) {
 
   var _super = _createSuper(RestError);
 
+  /**
+   * Set default values of CustomError class
+   * @param {object|Error} error - Either pass an built-un Error or Error Object from API
+   */
   function RestError(error) {
     var _this18;
 
@@ -1380,9 +1384,9 @@ var RestClient = /*#__PURE__*/function () {
       this.service.interceptors.response.use(function (response) {
         if (response.request.method === API_METHOD_POST) {
           if (response.status === 200) {
-            response.data.request_status = RES_STATUS_ACCEPTED;
+            response.data['request_status'] = RES_STATUS_ACCEPTED; // jshint ignore:line
           } else {
-            response.data.request_status = RES_STATUS_DELAYED;
+            response.data['request_status'] = RES_STATUS_DELAYED; // jshint ignore:line
           }
         }
 
@@ -1479,8 +1483,8 @@ var GreenSMS = /*#__PURE__*/function () {
       var params = {};
 
       if (!this.token && this.username) {
-        params['user'] = this.username;
-        params['pass'] = this.password;
+        params.user = this.username;
+        params.pass = this.password;
       }
 
       var httpClientOptions = _objectSpread(_objectSpread({}, httpParams), {

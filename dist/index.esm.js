@@ -44,11 +44,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-import _ from 'lodash';
 import URI from 'urijs';
 import { object, number, string, boolean as _boolean } from 'yup';
 import axios from 'axios';
 import humps from 'humps';
+import _ from 'lodash';
 import qs from 'qs'; //#region  General
 
 var API_METHOD_POST = 'POST';
@@ -1164,6 +1164,10 @@ var RestError = /*#__PURE__*/function (_Error) {
 
   var _super = _createSuper(RestError);
 
+  /**
+   * Set default values of CustomError class
+   * @param {object|Error} error - Either pass an built-un Error or Error Object from API
+   */
   function RestError(error) {
     var _this18;
 
@@ -1358,9 +1362,9 @@ var RestClient = /*#__PURE__*/function () {
       this.service.interceptors.response.use(function (response) {
         if (response.request.method === API_METHOD_POST) {
           if (response.status === 200) {
-            response.data.request_status = RES_STATUS_ACCEPTED;
+            response.data['request_status'] = RES_STATUS_ACCEPTED; // jshint ignore:line
           } else {
-            response.data.request_status = RES_STATUS_DELAYED;
+            response.data['request_status'] = RES_STATUS_DELAYED; // jshint ignore:line
           }
         }
 
@@ -1457,8 +1461,8 @@ var GreenSMS = /*#__PURE__*/function () {
       var params = {};
 
       if (!this.token && this.username) {
-        params['user'] = this.username;
-        params['pass'] = this.password;
+        params.user = this.username;
+        params.pass = this.password;
       }
 
       var httpClientOptions = _objectSpread(_objectSpread({}, httpParams), {
