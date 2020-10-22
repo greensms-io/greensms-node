@@ -1500,8 +1500,8 @@ var GreenSMS = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "serverStatus",
-    value: function serverStatus(opts, callback) {
+    key: "status",
+    value: function status(opts, callback) {
       opts = opts || {};
       var sharedOptions = {
         version: getVersion(opts.version),
@@ -1512,7 +1512,7 @@ var GreenSMS = /*#__PURE__*/function () {
       };
       var general = new General(sharedOptions).getInstance();
       var promise = new Promise(function (resolve, reject) {
-        general.serverStatus().then(resolve)["catch"](reject);
+        general.status().then(resolve)["catch"](reject);
       });
 
       if (callback !== null && typeof callback === 'function') {
