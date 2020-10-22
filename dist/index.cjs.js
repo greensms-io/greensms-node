@@ -219,8 +219,8 @@ var AccountV1 = /*#__PURE__*/function () {
   }
 
   _createClass(AccountV1, [{
-    key: "fetchBalance",
-    value: function fetchBalance(callback) {
+    key: "balance",
+    value: function balance(callback) {
       var _this = this;
 
       var functionName = METHOD_ACCOUNT_BALANCE;
@@ -243,8 +243,8 @@ var AccountV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchToken",
-    value: function fetchToken(params, callback) {
+    key: "token",
+    value: function token(params, callback) {
       var _this2 = this;
 
       var functionName = METHOD_ACCOUNT_TOKEN;
@@ -275,8 +275,8 @@ var AccountV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchTariff",
-    value: function fetchTariff(callback) {
+    key: "tariff",
+    value: function tariff(callback) {
       var _this3 = this;
 
       var functionName = METHOD_ACCOUNT_TARIFF;
@@ -353,8 +353,8 @@ var SmsV1 = /*#__PURE__*/function () {
   }
 
   _createClass(SmsV1, [{
-    key: "sendMessage",
-    value: function sendMessage(params, callback) {
+    key: "send",
+    value: function send(params, callback) {
       var _this4 = this;
 
       var functionName = METHOD_SMS_SEND;
@@ -389,8 +389,8 @@ var SmsV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchStatus",
-    value: function fetchStatus(params, callback) {
+    key: "status",
+    value: function status(params, callback) {
       var _this5 = this;
 
       var functionName = METHOD_SMS_STATUS;
@@ -478,8 +478,8 @@ var ViberV1 = /*#__PURE__*/function () {
   }
 
   _createClass(ViberV1, [{
-    key: "sendMessage",
-    value: function sendMessage(params, callback) {
+    key: "send",
+    value: function send(params, callback) {
       var _this6 = this;
 
       var functionName = METHOD_VIBER_SEND;
@@ -514,8 +514,8 @@ var ViberV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchStatus",
-    value: function fetchStatus(params, callback) {
+    key: "status",
+    value: function status(params, callback) {
       var _this7 = this;
 
       var functionName = METHOD_VIBER_STATUS;
@@ -600,8 +600,8 @@ var CallV1 = /*#__PURE__*/function () {
   }
 
   _createClass(CallV1, [{
-    key: "sendCallVerification",
-    value: function sendCallVerification(params, callback) {
+    key: "send",
+    value: function send(params, callback) {
       var _this8 = this;
 
       var functionName = METHOD_CALL_SEND;
@@ -636,8 +636,8 @@ var CallV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchStatus",
-    value: function fetchStatus(params, callback) {
+    key: "status",
+    value: function status(params, callback) {
       var _this9 = this;
 
       var functionName = METHOD_CALL_STATUS;
@@ -724,8 +724,8 @@ var VoiceV1 = /*#__PURE__*/function () {
   }
 
   _createClass(VoiceV1, [{
-    key: "sendMessage",
-    value: function sendMessage(params, callback) {
+    key: "send",
+    value: function send(params, callback) {
       var _this10 = this;
 
       var functionName = METHOD_VOICE_SEND;
@@ -760,8 +760,8 @@ var VoiceV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchStatus",
-    value: function fetchStatus(params, callback) {
+    key: "status",
+    value: function status(params, callback) {
       var _this11 = this;
 
       var functionName = METHOD_VOICE_STATUS;
@@ -846,8 +846,8 @@ var HlrV1 = /*#__PURE__*/function () {
   }
 
   _createClass(HlrV1, [{
-    key: "sendMessage",
-    value: function sendMessage(params, callback) {
+    key: "send",
+    value: function send(params, callback) {
       var _this12 = this;
 
       var functionName = METHOD_VOICE_SEND;
@@ -882,8 +882,8 @@ var HlrV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchStatus",
-    value: function fetchStatus(params, callback) {
+    key: "status",
+    value: function status(params, callback) {
       var _this13 = this;
 
       var functionName = METHOD_VOICE_STATUS;
@@ -969,8 +969,8 @@ var PaymentV1 = /*#__PURE__*/function () {
   }
 
   _createClass(PaymentV1, [{
-    key: "sendPayment",
-    value: function sendPayment(params, callback) {
+    key: "pay",
+    value: function pay(params, callback) {
       var _this14 = this;
 
       var functionName = METHOD_PAY_SEND;
@@ -1005,8 +1005,8 @@ var PaymentV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "fetchStatus",
-    value: function fetchStatus(params, callback) {
+    key: "status",
+    value: function status(params, callback) {
       var _this15 = this;
 
       var functionName = METHOD_PAY_STATUS;
@@ -1122,8 +1122,8 @@ var GeneralV1 = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "serverStatus",
-    value: function serverStatus(callback) {
+    key: "status",
+    value: function status(callback) {
       var _this17 = this;
 
       var functionName = MODULE_SERVER_STATUS;
