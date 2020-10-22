@@ -1,6 +1,6 @@
 "use strict";
 
-const { GreenSMS, greenSmsInstance } = require("./green-sms");
+const { GreenSMS, greenSmsInstance } = require("./greensms");
 
 const lookupParams = {
   to: '919987409698',

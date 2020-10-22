@@ -1,4 +1,4 @@
-const { greenSmsInstance } = require("./green-sms");
+const { greenSmsInstance } = require("./greensms");
 
 const payParams = {
   to: '919987409698',

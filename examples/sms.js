@@ -1,6 +1,6 @@
 "use strict";
 
-const { greenSmsInstance } = require("./green-sms");
+const { greenSmsInstance } = require("./greensms");
 
 greenSmsInstance.sms
   .sendMessage({
