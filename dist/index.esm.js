@@ -947,8 +947,8 @@ var PaymentV1 = /*#__PURE__*/function () {
   }
 
   _createClass(PaymentV1, [{
-    key: "pay",
-    value: function pay(params, callback) {
+    key: "send",
+    value: function send(params, callback) {
       var _this14 = this;
 
       var functionName = METHOD_PAY_SEND;
