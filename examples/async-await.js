@@ -1,8 +1,8 @@
-const { GreenSMS } = require("./greensms");
+const { greenSmsInstance } = require("./greensms");
 
-async function getServerStatus() {
-  const serverStatus = await GreenSMS.status();
-  console.log('Server Status', serverStatus);
+async function getAccountBalance() {
+  const balanceResponse = await greenSmsInstance.account.balance();
+  console.log('Account Balance', balanceResponse);
 }
 
-getServerStatus();
+getAccountBalance();
