@@ -16,7 +16,7 @@ const viberStatusParams = {
   extended: true
 };
 
-greenSmsInstance.viber.fetchStatus(viberStatusParams).then((data) => {
+greenSmsInstance.viber.status(viberStatusParams).then((data) => {
   console.log("Status Viber Data", data);
 }).catch((err) => {
   console.error("Status Viber Error", err);

@@ -16,7 +16,7 @@ const smsStatusParams = {
   extended: true
 };
 
-greenSmsInstance.sms.fetchStatus(smsStatusParams).then((data) => {
+greenSmsInstance.sms.status(smsStatusParams).then((data) => {
   console.log("Send SMS Data", data);
 }).catch((err) => {
   console.error("Send SMS Error", err);
