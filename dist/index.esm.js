@@ -784,6 +784,18 @@ var GreenSMS = /*#__PURE__*/function () {
       this.token = token;
     }
 
+    if (!token) {
+      this.token = process.env.GREENSMS_AUTH_TOKEN;
+    }
+
+    if (!token && !username) {
+      username = process.env.GREENSMS_USERNAME;
+    }
+
+    if (!token && !password) {
+      password = process.env.GREENSMS_PASSWORD;
+    }
+
     if (!this.token && (!username || !password)) {
       throw new Error('Either User/Pass or Auth Token is required!');
     } else if (username) {
