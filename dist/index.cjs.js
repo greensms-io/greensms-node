@@ -391,7 +391,7 @@ var ValidationSchema = {
       })
     }
   },
-  general: {
+  whois: {
     v1: {
       lookup: Yup.object().shape({
         to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
@@ -574,15 +574,22 @@ var Modules = {
       }
     }
   },
-  general: {
-    schema: ValidationSchema.general,
-    "static": true,
+  whois: {
+    schema: ValidationSchema.whois,
     versions: {
       v1: {
         lookup: {
           args: ['params'],
           method: 'GET'
-        },
+        }
+      }
+    }
+  },
+  general: {
+    schema: ValidationSchema.general,
+    "static": true,
+    versions: {
+      v1: {
         status: {
           args: null,
           method: 'GET'
@@ -709,7 +716,14 @@ var ModuleLoader = /*#__PURE__*/function () {
               } // Build dynamic URL
 
 
-              var apiUrl = buildUrl(sharedOptions.baseUrl, moduleName, func);
+              var urlArgs = [sharedOptions.baseUrl];
+
+              if (moduleInfo["static"] !== true) {
+                urlArgs.push(moduleName);
+              }
+
+              urlArgs.push(func);
+              var apiUrl = buildUrl.apply(void 0, urlArgs);
               var promise = new Promise(function (resolve, reject) {
                 var requestObj = {
                   uri: apiUrl,
@@ -717,7 +731,7 @@ var ModuleLoader = /*#__PURE__*/function () {
                 }; // If API has params, then we validate and append to request object
 
                 if (params) {
-                  if (moduleSchema[version] && moduleSchema[version][func]) {
+                  if (moduleSchema && moduleSchema[version] && moduleSchema[version][func]) {
                     var errors = validate(moduleSchema[version][func], params);
 
                     if (errors) {
