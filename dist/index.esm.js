@@ -785,15 +785,15 @@ var GreenSMS = /*#__PURE__*/function () {
     }
 
     if (!token) {
-      this.token = process.env.GREENSMS_AUTH_TOKEN;
+      this.token = process.env.GREENSMS_TOKEN;
     }
 
     if (!token && !username) {
-      username = process.env.GREENSMS_USERNAME;
+      username = process.env.GREENSMS_USER;
     }
 
     if (!token && !password) {
-      password = process.env.GREENSMS_PASSWORD;
+      password = process.env.GREENSMS_PASS;
     }
 
     if (!this.token && (!username || !password)) {
