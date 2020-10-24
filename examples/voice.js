@@ -10,10 +10,10 @@ greenSmsInstance.voice.send(voiceParams).then((data) => {
   console.error("Send Voice Error", err)
 });
 
-const callStatusParams = {
+const voiceStatusParams = {
   id: '41f23094-deda-4cab-ac9c-3ab4f2fee9e6'
 };
-greenSmsInstance.voice.status(callStatusParams).then((data)=> {
+greenSmsInstance.voice.status(voiceStatusParams).then((data)=> {
   console.error("Voice Status Data", data);
 }).catch(err => {
   console.error("Voice Status Error", err);
