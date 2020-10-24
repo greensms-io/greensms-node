@@ -84,6 +84,12 @@ greenSmsInstance.account.balance(cb);
 - Parameters for each API can be referred from [here][apidocs]
 - Response keys by default are available in `snake_case`. If you want to use `camelCase`, then pass `camelCaseResponse: true`, in the constructor
 
+## Handling Exceptions
+
+- Exceptions for Promise are caught in the catch block.
+- For Async/Await, you can catch the error with `try/catch` block
+- Each Error consists of `error`, `code`, `message`, `errorType` fields and extends the default javascript `Error` class
+
 ## Getting help
 
 If you need help installing or using the library, please contact us: [support@greensms.ru](mailto:support@greensms.ru).
