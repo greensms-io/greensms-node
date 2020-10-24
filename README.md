@@ -78,6 +78,12 @@ greenSmsInstance.account.balance(cb);
 
 ## Methods
 
+- You can either use username/password combination or auth token to create an object with constructor
+- All methods support Promises, Async/Await and Callbacks.
+- Each API Function is available as `MODULE.FUNCTION()`
+- Parameters for each API can be referred from [here][apidocs]
+- Response keys by default are available in `snake_case`. If you want to use `camelCase`, then pass `camelCaseResponse: true`, in the constructor
+
 ## Getting help
 
 If you need help installing or using the library, please contact us: [support@greensms.ru](mailto:support@greensms.ru).
