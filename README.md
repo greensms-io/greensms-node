@@ -46,13 +46,22 @@ client.sms
 
 ### Token Auth
 
+```javascript
+const GreenSMS = require("greensms");
+
+const client = new GreenSMS({ token: "token" });
+
+client.account
+  .balance()
+  .then((response) => {
+    console.log("Balance ", response.balance);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+```
+
 ## Methods
-
-All methods support Promises, Async/Await and Callbacks.
-
-## Handling Exceptions
-
-For an example on how to handle exceptions in this helper library.
 
 ## Getting help
 
