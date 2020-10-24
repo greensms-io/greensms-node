@@ -6,27 +6,27 @@ const { expect } = chai;
 
 chai.use(chaiAsPromise);
 
-describe('Call', function() {
+describe('Voice', function() {
 
   it('should have a key request_id', async function() {
-    const data = await greenSmsInstance.call.send({
+    const data = await greenSmsInstance.voice.send({
       to: '919987409698',
+      txt: '1001'
     });
     expect(data).to.have.property('requestId');
-    expect(data).to.have.property('code');
   });
 
   it('should throw an Error if to is not specified', async function() {
-    await expect(greenSmsInstance.call.send()).to.be.rejectedWith(Error);
+    await expect(greenSmsInstance.voice.send()).to.be.rejectedWith(Error);
   });
 
   it('should have a key status', async function() {
 
-    const callStatusParams = {
-      id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55'
+    const voiceStatusParams = {
+      id: '41f23094-deda-4cab-ac9c-3ab4f2fee9e6'
     };
 
-    const data = await greenSmsInstance.call.status(callStatusParams);
+    const data = await greenSmsInstance.voice.status(voiceStatusParams);
     expect(data).to.have.property('status');
   });
 
