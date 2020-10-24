@@ -23,7 +23,8 @@ Check out these [code examples](examples) in JavaScript and TypeScript to get up
 
 ```javascript
 const GreenSMS = require("greensms")
-client = new GreenSMS({username: 'test',password: 'test'});
+// Register at my.greeensms.ru first
+client = new GreenSMS({username: 'test',password: 'test'}); 
 
 client.sms.send({
     to: '71231234567',
