@@ -61,6 +61,21 @@ client.account
   });
 ```
 
+### Callback Example
+
+```javascript
+const GreenSMS = require("greensms");
+// Register at my.greeensms.ru first
+const client = new GreenSMS({ username: "test", password: "test" });
+
+function cb(err, response) {
+  console.error("Error ", err);
+  console.log("Response", response);
+}
+
+greenSmsInstance.account.balance(cb);
+```
+
 ## Methods
 
 ## Getting help
