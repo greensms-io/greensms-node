@@ -3,26 +3,17 @@
 [![NPM](https://nodei.co/npm/greensms.png?downloads=true&stars=true)](https://nodei.co/npm/greensms/)
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/greensms-ru/greensms-node)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greensms-ru/greensms-nod/unit-test)
+![node-current](https://img.shields.io/node/v/greensms)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greensms-ru/greensms-node/Node.js%20Package)
 ![Coveralls github](https://img.shields.io/coveralls/github/greensms-ru/greensms-node)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bda5e78fb51a4c24b2935d93369df539)](https://www.codacy.com/gh/greensms-ru/greensms-node/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=greensms-ru/greensms-node&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bda5e78fb51a4c24b2935d93369df539)](https://www.codacy.com/gh/greensms-ru/greensms-node/dashboard?utm_source=github.com&utm_medium=referral&utm_content=greensms-ru/greensms-node&utm_campaign=Badge_Grade)
 
 ## Documentation
 
 The documentation for the GREENSMS API can be found [here][apidocs].
 
-### Supported Node.js Versions
-
-This library supports the following Node.js implementations:
-
-* Node.js 8
-* Node.js 10
-* Node.js 12
-* Node.js 14
-
-TypeScript is supported for TypeScript version 2.9 and above.
-
 ## Installation
+
 ```bash
 npm install greensms --save
 ```
@@ -32,16 +23,17 @@ npm install greensms --save
 Check out these [code examples](examples) in JavaScript and TypeScript to get up and running quickly.
 
 ```javascript
-var username = process.env.GREENSMS_USERNAME; // Your Account Login from my.greensms.ru
-var password = process.env.GREENSMS_PASSWORD;   // Your Account Password from my.greensms.ru
+const GreenSMS = require("greensms");
+// Register at my.greeensms.ru first
+client = new GreenSMS({ username: "test", password: "test" });
 
-const greensms = require('greensms')(username, password);
-greensms.sms.send({
-    to: '79262345678',
-    txt: 'Message to deliver',
+client.sms
+  .send({
+    to: "71231234567",
+    txt: "Message to deliver",
   })
   .then((response) => {
-    console.log("Request ID: %", response.request_id);
+    console.log("Request ID: %s", response.request_id);
   })
   .catch((err) => {
     console.error(err);
@@ -50,11 +42,13 @@ greensms.sms.send({
 
 ### Environment Variables
 
-`greensms-node` supports credential storage in environment variables. If no credentials are provided when instantiating the GreenSMS client (e.g., `const client = require('greensms')();`), the values in following env vars will be used: `GREENSMS_USERNAME`/`GREENSMS_PASSWORD` OR `GREENSMS_TOKEN`.
+`greensms-node` supports credential storage in environment variables. If no credentials are provided following env vars will be used: `GREENSMS_USER`/`GREENSMS_PASS` OR `GREENSMS_TOKEN`.
 
 ### Token Auth
 
 ## Methods
+
+All methods support Promises, Async/Await and Callbacks.
 
 ## Handling Exceptions
 

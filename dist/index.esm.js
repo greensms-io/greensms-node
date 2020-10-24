@@ -593,13 +593,14 @@ function getError(err) {
 
 
 var validate = function validate(yupSchema, objData) {
+  var errorResult = null;
+
   try {
     yupSchema.validateSync(objData, {
       strict: false,
       stripUnknown: true,
       abortEarly: false
     });
-    return null;
   } catch (err) {
     var errors = [];
 
@@ -611,12 +612,14 @@ var validate = function validate(yupSchema, objData) {
       errors.push(getError(err));
     }
 
-    return new RestError({
+    errorResult = {
       code: 1,
       error: 'Validation Error',
       params: errors
-    });
+    };
   }
+
+  return errorResult;
 };
 
 var ModuleLoader = /*#__PURE__*/function () {
