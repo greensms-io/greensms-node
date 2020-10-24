@@ -6,13 +6,14 @@
 ![node-current](https://img.shields.io/node/v/greensms)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greensms-ru/greensms-node/Node.js%20Package)
 ![Coveralls github](https://img.shields.io/coveralls/github/greensms-ru/greensms-node)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bda5e78fb51a4c24b2935d93369df539)](https://www.codacy.com/gh/greensms-ru/greensms-node/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=greensms-ru/greensms-node&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bda5e78fb51a4c24b2935d93369df539)](https://www.codacy.com/gh/greensms-ru/greensms-node/dashboard?utm_source=github.com&utm_medium=referral&utm_content=greensms-ru/greensms-node&utm_campaign=Badge_Grade)
 
 ## Documentation
 
 The documentation for the GREENSMS API can be found [here][apidocs].
 
 ## Installation
+
 ```bash
 npm install greensms --save
 ```
@@ -22,13 +23,14 @@ npm install greensms --save
 Check out these [code examples](examples) in JavaScript and TypeScript to get up and running quickly.
 
 ```javascript
-const GreenSMS = require("greensms")
+const GreenSMS = require("greensms");
 // Register at my.greeensms.ru first
-client = new GreenSMS({username: 'test',password: 'test'}); 
+client = new GreenSMS({ username: "test", password: "test" });
 
-client.sms.send({
-    to: '71231234567',
-    txt: 'Message to deliver',
+client.sms
+  .send({
+    to: "71231234567",
+    txt: "Message to deliver",
   })
   .then((response) => {
     console.log("Request ID: %s", response.request_id);
@@ -40,11 +42,13 @@ client.sms.send({
 
 ### Environment Variables
 
-`greensms-node` supports credential storage in environment variables. If no credentials are provided following env vars will be used: `GREENSMS_USERNAME`/`GREENSMS_PASSWORD` OR `GREENSMS_TOKEN`.
+`greensms-node` supports credential storage in environment variables. If no credentials are provided following env vars will be used: `GREENSMS_USER`/`GREENSMS_PASS` OR `GREENSMS_TOKEN`.
 
 ### Token Auth
 
 ## Methods
+
+All methods support Promises, Async/Await and Callbacks.
 
 ## Handling Exceptions
 
