@@ -21,14 +21,13 @@
     "_lint_global": "jshint ./lib",
     "_lint": "node ./node_modules/jshint/dist/jshint.js ./lib",
     "_jsdoc": "node ./node_modules/jsdoc/jsdoc.js -c jsdoc.conf.json",
-    "test": "mocha --timeout 10000"
+    "test": "GREENSMS_USER=test GREENSMS_PASS=test mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greensms-ru/greensms-node.git"
   },
   "keywords": [
-    "green-sms",
     "greensms",
     "sms",
     "rest",
