@@ -10,7 +10,7 @@ describe('Additional', function() {
 
   it('should have a key def', async function() {
     const data = await greenSmsInstance.whois.lookup({
-      to: '919987409698',
+      to: '79260000000',
 
     });
     expect(data).to.have.property('def');
