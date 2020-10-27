@@ -743,6 +743,11 @@ var ModuleLoader = /*#__PURE__*/function () {
             if (version === currentVersion) {
               _this4.moduleMap[moduleName][func] = _this4.moduleMap[moduleName][version][func];
             }
+
+            if (moduleInfo["static"] === true) {
+              _this4.moduleMap[func] = _this4.moduleMap[moduleName][version][func];
+              delete _this4.moduleMap[moduleName]; // Remove static functio mapping
+            }
           };
 
           for (var func in versionFunctions) {
@@ -777,8 +782,8 @@ var GreenSMS = /*#__PURE__*/function () {
   /**
    * Initialize GreenSMS Client
    * @param {object} opts - Options
-   * @param {string|null} opts.username - Username. Required when AuthToken is not passed
-   * @param {string|null} opts.password - Password. Request when AuthToken is not passed
+   * @param {string|null} opts.user - Username. Required when AuthToken is not passed
+   * @param {string|null} opts.pass - Password. Request when AuthToken is not passed
    * @param {string|null} opts.token - AuthToken. Required when Username/Password not passed
    * @param {boolean} opts.useTokenForRequests - Create Auth Token after login and use for subsequent requests
    * @param {String} opts.version - API Version to be used
@@ -789,8 +794,8 @@ var GreenSMS = /*#__PURE__*/function () {
 
     opts = opts || {};
     var _opts = opts,
-        username = _opts.username,
-        password = _opts.password,
+        user = _opts.user,
+        pass = _opts.pass,
         token = _opts.token,
         useTokenForRequests = _opts.useTokenForRequests,
         camelCaseResponse = _opts.camelCaseResponse,
@@ -805,19 +810,19 @@ var GreenSMS = /*#__PURE__*/function () {
       this.token = process.env.GREENSMS_TOKEN;
     }
 
-    if (!token && !username) {
-      username = process.env.GREENSMS_USER;
+    if (!token && !user) {
+      user = process.env.GREENSMS_USER;
     }
 
-    if (!token && !password) {
-      password = process.env.GREENSMS_PASS;
+    if (!token && !pass) {
+      pass = process.env.GREENSMS_PASS;
     }
 
-    if (!this.token && (!username || !password)) {
+    if (!this.token && (!user || !pass)) {
       throw new Error('Either User/Pass or Auth Token is required!');
-    } else if (username) {
-      this.username = username;
-      this.password = password;
+    } else if (user) {
+      this.user = user;
+      this.pass = pass;
     }
 
     var sharedOptions = {
@@ -847,9 +852,9 @@ var GreenSMS = /*#__PURE__*/function () {
       httpParams = httpParams || {};
       var params = {};
 
-      if (!this.token && this.username) {
-        params.user = this.username;
-        params.pass = this.password;
+      if (!this.token && this.user) {
+        params.user = this.user;
+        params.pass = this.pass;
       }
 
       var httpClientOptions = _objectSpread(_objectSpread({}, httpParams), {
