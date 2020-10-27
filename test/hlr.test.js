@@ -10,9 +10,8 @@ describe('HLR', function() {
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.hlr.send({
-      to: randomPhone(),
+      to: '79260000000',
     });
-    console.log('Data', data);
     expect(data).to.have.property('requestId');
   });
 
