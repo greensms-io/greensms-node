@@ -73,5 +73,8 @@
   "settings": {
     "moduleName": "greensms",
     "minify": false
+  },
+  "optionalDependencies": {
+    "fsevents": "2.1.3"
   }
 }
