@@ -15,7 +15,7 @@ describe('SMS', function() {
       txt: 'Order Delivery to Hampshire Received',
       from: 'Mocha',
       tag: 'MochaTest',
-      hidden: 'Hampshire'
+      hidden: 'Hampshire',
 
     });
     expect(data).to.have.property('requestId');
@@ -29,7 +29,7 @@ describe('SMS', function() {
 
     const smsStatusParams = {
       id: 'dc2bac6d-f375-4e19-9a02-ef0148991635',
-      extended: true
+      extended: true,
     };
 
     const data = await greenSmsInstance.sms.status(smsStatusParams);

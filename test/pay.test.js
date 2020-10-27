@@ -12,7 +12,7 @@ describe('Pay', function() {
     const data = await greenSmsInstance.pay.send({
       to: randomPhone(),
       amount: 10,
-      tag: 'MochaTest'
+      tag: 'MochaTest',
     });
     expect(data).to.have.property('requestId');
   });
@@ -24,7 +24,7 @@ describe('Pay', function() {
   it('should have a key status', async function() {
 
     const paymentStatusParams = {
-      id: '60f231d9-16ec-4313-842e-6e6853063482'
+      id: '60f231d9-16ec-4313-842e-6e6853063482',
     };
 
     const data = await greenSmsInstance.pay.status(paymentStatusParams);

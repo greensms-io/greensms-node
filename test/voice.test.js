@@ -12,7 +12,7 @@ describe('Voice', function() {
     const data = await greenSmsInstance.voice.send({
       to: randomPhone(),
       txt: '1001',
-      lang: 'en'
+      lang: 'en',
     });
     expect(data).to.have.property('requestId');
   });
@@ -25,7 +25,7 @@ describe('Voice', function() {
 
     const voiceStatusParams = {
       id: '41f23094-deda-4cab-ac9c-3ab4f2fee9e6',
-      extended: true
+      extended: true,
     };
 
     const data = await greenSmsInstance.voice.status(voiceStatusParams);

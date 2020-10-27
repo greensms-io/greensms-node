@@ -2,7 +2,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function randomPhone () {
+function randomPhone() {
   const min = 70000000000;
   const max = 70009999999;
   return randomNumber(min, max);
@@ -10,5 +10,5 @@ function randomPhone () {
 
 module.exports = {
   randomNumber,
-  randomPhone
+  randomPhone,
 };

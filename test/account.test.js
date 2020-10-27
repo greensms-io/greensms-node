@@ -7,7 +7,6 @@ const { randomPhone } = require('./utils');
 chai.use(chaiAsPromise);
 
 
-
 describe('Account', function() {
 
   it('should have a key balance', async function() {
@@ -36,10 +35,10 @@ describe('Account', function() {
 
     const client = new GreenSMS({
       user: 'test_block_user', // Should come from ENB of Pipeline
-      pass: '18345612'
+      pass: '18345612',
     });
 
-    await expect(client.account.balance()).to.eventually.be.rejectedWith("Authorization declined");
+    await expect(client.account.balance()).to.eventually.be.rejectedWith('Authorization declined');
 
   });
 
@@ -47,13 +46,13 @@ describe('Account', function() {
 
     const client = new GreenSMS({
       user: 'test_block_user', // Should come from ENB of Pipeline
-      pass: '183456'
+      pass: '183456',
     });
 
     await expect(client.sms.send({
       to: randomPhone(),
-      txt: 'Test Message'
-    })).to.eventually.be.rejectedWith("Insufficient funds");
+      txt: 'Test Message',
+    })).to.eventually.be.rejectedWith('Insufficient funds');
 
   });
 });

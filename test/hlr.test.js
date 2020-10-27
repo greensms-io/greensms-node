@@ -23,7 +23,7 @@ describe('HLR', function() {
 
     const hlrStatusParams = {
       id: '70d296f5-ac52-403d-a27b-24829c2faebc',
-      to: '123' // TODO: Remove this field when the API is updated
+      to: '123', // TODO: Remove this field when the API is updated
     };
     const data = await greenSmsInstance.hlr.status(hlrStatusParams);
     expect(data).to.have.property('status');

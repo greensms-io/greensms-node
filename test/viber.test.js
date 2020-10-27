@@ -27,7 +27,7 @@ describe('Viber', function() {
 
     const viberStatusParams = {
       id: '0b18fab4-0c5d-4a8b-8ee4-057a59596c7d',
-      extended: true
+      extended: true,
     };
 
     const data = await greenSmsInstance.viber.status(viberStatusParams);
