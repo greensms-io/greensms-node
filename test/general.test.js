@@ -21,7 +21,7 @@ describe('Additional', function() {
 
   it('should have a key status', async function() {
 
-    const data = await greenSmsInstance.general.status();
+    const data = await greenSmsInstance.status();
     expect(data).to.have.property('status');
   });
 
