@@ -61,7 +61,7 @@
     "eslint": "^7.11.0",
     "jsdoc": "^3.6.6",
     "jshint": "^2.12.0",
-    "mocha": "^8.2.0",
+    "mocha": "^7.2.0",
     "rollup": "^2.32.0",
     "rollup-plugin-dts": "^1.4.13",
     "rollup-plugin-eslint": "^7.0.0",
@@ -73,5 +73,8 @@
   "settings": {
     "moduleName": "greensms",
     "minify": false
+  },
+  "optionalDependencies": {
+    "fsevents": "2.1.3"
   }
 }

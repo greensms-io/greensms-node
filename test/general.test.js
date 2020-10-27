@@ -1,4 +1,4 @@
-const { greenSmsInstance } = require('./../examples/greensms');
+const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
 
@@ -21,7 +21,7 @@ describe('Additional', function() {
 
   it('should have a key status', async function() {
 
-    const data = await greenSmsInstance.general.status();
+    const data = await greenSmsInstance.status();
     expect(data).to.have.property('status');
   });
 
