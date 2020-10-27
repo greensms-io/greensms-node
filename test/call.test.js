@@ -23,7 +23,8 @@ describe('Call', function() {
   it('should have a key status', async function() {
 
     const callStatusParams = {
-      id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55'
+      id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55',
+      extended: true
     };
 
     const data = await greenSmsInstance.call.status(callStatusParams);

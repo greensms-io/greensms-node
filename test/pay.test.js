@@ -12,7 +12,7 @@ describe('Pay', function() {
     const data = await greenSmsInstance.pay.send({
       to: '919987409698',
       amount: 10,
-      tag: 'Onboarding'
+      tag: 'MochaTest'
     });
     expect(data).to.have.property('requestId');
   });

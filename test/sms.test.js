@@ -11,7 +11,11 @@ describe('SMS', function() {
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.sms.send({
       to: '919987409698',
-      txt: 'Here is your message for delivery',
+      txt: 'Order Delivery to Hampshire Received',
+      from: 'Mocha',
+      tag: 'MochaTest',
+      hidden: 'Hampshire'
+
     });
     expect(data).to.have.property('requestId');
   });

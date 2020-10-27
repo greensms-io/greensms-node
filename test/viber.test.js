@@ -12,6 +12,8 @@ describe('Viber', function() {
     const data = await greenSmsInstance.viber.send({
       to: '919987409698',
       txt: 'Here is your message for delivery',
+      from: 'GreenSMS',
+      cascade: 'sms',
     });
     expect(data).to.have.property('requestId');
   });
