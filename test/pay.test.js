@@ -11,7 +11,8 @@ describe('Pay', function() {
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.pay.send({
       to: '919987409698',
-      amount: 10
+      amount: 10,
+      tag: 'Onboarding'
     });
     expect(data).to.have.property('requestId');
   });
