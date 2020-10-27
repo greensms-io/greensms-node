@@ -21,7 +21,8 @@
     "_lint_global": "jshint ./lib",
     "_lint": "node ./node_modules/jshint/dist/jshint.js ./lib",
     "_jsdoc": "node ./node_modules/jsdoc/jsdoc.js -c jsdoc.conf.json",
-    "test": "GREENSMS_USER=test GREENSMS_PASS=test mocha --timeout 10000"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "GREENSMS_USER=test GREENSMS_PASS=test nyc mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
@@ -57,11 +58,13 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.11.0",
     "jsdoc": "^3.6.6",
     "jshint": "^2.12.0",
     "mocha": "^7.2.0",
+    "nyc": "^15.1.0",
     "rollup": "^2.32.0",
     "rollup-plugin-dts": "^1.4.13",
     "rollup-plugin-eslint": "^7.0.0",
