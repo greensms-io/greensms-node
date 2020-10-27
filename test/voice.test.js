@@ -1,4 +1,4 @@
-const { greenSmsInstance } = require('./../examples/greensms');
+const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
 

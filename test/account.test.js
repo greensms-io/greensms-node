@@ -1,4 +1,4 @@
-const { GreenSMS, greenSmsInstance } = require('./../examples/greensms');
+const { GreenSMS, greenSmsInstance } = require('./greensms');
 const { expect } = require('chai');
 
 describe('Account', function() {
