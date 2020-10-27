@@ -426,7 +426,8 @@ var ValidationSchema = {
     v1: {
       send: Yup.object().shape({
         to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
-        amount: Yup.number().required().min(1).positive()
+        amount: Yup.number().required().min(1).positive(),
+        tag: Yup.string()
       }),
       status: Yup.object().shape({
         id: Yup.string().required().length(36),

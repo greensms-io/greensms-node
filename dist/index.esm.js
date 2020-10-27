@@ -407,7 +407,8 @@ var ValidationSchema = {
     v1: {
       send: object().shape({
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
-        amount: number().required().min(1).positive()
+        amount: number().required().min(1).positive(),
+        tag: string()
       }),
       status: object().shape({
         id: string().required().length(36),
