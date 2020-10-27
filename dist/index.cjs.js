@@ -632,11 +632,11 @@ var validate = function validate(yupSchema, objData) {
       errors.push(getError(err));
     }
 
-    errorResult = {
+    errorResult = new RestError({
       code: 1,
       error: 'Validation Error',
       params: errors
-    };
+    });
   }
 
   return errorResult;
