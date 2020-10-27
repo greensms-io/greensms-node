@@ -3,6 +3,7 @@ const { GreenSMS, greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
 const { expect } = chai;
+const { randomPhone } = require('./utils');
 chai.use(chaiAsPromise);
 
 
@@ -35,7 +36,7 @@ describe('Account', function() {
 
     const client = new GreenSMS({
       user: 'test_block_user', // Should come from ENB of Pipeline
-      pass: '1834561'
+      pass: '18345612'
     });
 
     await expect(client.account.balance()).to.eventually.be.rejectedWith("Authorization declined");
@@ -50,7 +51,7 @@ describe('Account', function() {
     });
 
     await expect(client.sms.send({
-      to: '919987409698',
+      to: randomPhone(),
       txt: 'Test Message'
     })).to.eventually.be.rejectedWith("Insufficient funds");
 

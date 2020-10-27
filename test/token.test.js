@@ -10,20 +10,20 @@ const { greenSmsInstance } = require("./greensms");
 
 // Will pick token from process.env.GREENSMS_TOKEN
 
-
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibWFuYW4yNCIsImlhdCI6MTYwMzU2OTgzMCwiaXNzIjoiYXBpLmdyZWVuc21zLnJ1In0.OKiv5itdirS_PuPJj5kgGcR2_9DsC9ALW9c8FvvHSF4";
 describe('Token', function() {
 
   it('should have a key balance', async function() {
-    if(process.env.GREENSMS_TOKEN) {
-      const tokenInstance = new GreenSMS({}); //
+    if(token) {
+      const tokenInstance = new GreenSMS({ token }); //
       const data = await tokenInstance.account.balance();
       expect(data).to.have.property('balance');
     }
   });
 
   it('should throw error if token not available', async function() {
-    process.env.GREENSMS_TOKEN = undefined;
-    if(!process.env.GREENSMS_TOKEN) {
+    token = undefined;
+    if(!token) {
       const tokenInstance = new GreenSMS({}); //
       await expect(tokenInstance.account.balance()).to.throw(Error);
     }

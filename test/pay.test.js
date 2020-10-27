@@ -1,7 +1,7 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-
+const { randomPhone } = require('./utils');
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
@@ -10,7 +10,7 @@ describe('Pay', function() {
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.pay.send({
-      to: '919987409698',
+      to: randomPhone(),
       amount: 10,
       tag: 'MochaTest'
     });

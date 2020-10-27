@@ -1,7 +1,7 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-
+const  { randomPhone } = require('./utils');
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
@@ -10,7 +10,7 @@ describe('Call', function() {
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.call.send({
-      to: '919987409698',
+      to: randomPhone(),
     });
     expect(data).to.have.property('requestId');
     expect(data).to.have.property('code');

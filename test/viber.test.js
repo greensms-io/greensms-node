@@ -1,6 +1,7 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
+const  { randomPhone } = require('./utils');
 
 const { expect } = chai;
 
@@ -10,7 +11,7 @@ describe('Viber', function() {
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.viber.send({
-      to: '919987409698',
+      to: randomPhone(),
       txt: 'Here is your message for delivery',
       from: 'GreenSMS',
       cascade: 'sms',

@@ -1,7 +1,7 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-
+const  { randomPhone } = require('./utils');
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
@@ -10,7 +10,7 @@ describe('Voice', function() {
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.voice.send({
-      to: '919987409698',
+      to: randomPhone(),
       txt: '1001',
       lang: 'en'
     });
