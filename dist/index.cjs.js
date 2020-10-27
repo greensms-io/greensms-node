@@ -795,9 +795,6 @@ var ModuleLoader = /*#__PURE__*/function () {
   return ModuleLoader;
 }();
 
-var instance = new ModuleLoader();
-Object.freeze(instance); // Create a Singleton Instance
-
 var GreenSMS = /*#__PURE__*/function () {
   /**
    * Initialize GreenSMS Client
@@ -859,7 +856,8 @@ var GreenSMS = /*#__PURE__*/function () {
   _createClass(GreenSMS, [{
     key: "addModules",
     value: function addModules(sharedOptions) {
-      var modules = instance.registerModules(sharedOptions);
+      var moduleLoader = new ModuleLoader();
+      var modules = moduleLoader.registerModules(sharedOptions);
 
       for (var moduleKey in modules) {
         var currentModule = modules[moduleKey];
