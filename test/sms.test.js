@@ -1,6 +1,7 @@
-const { greenSmsInstance } = require('./../examples/greensms');
+const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
+const { randomPhone } = require('./utils');
 
 const { expect } = chai;
 
@@ -10,8 +11,12 @@ describe('SMS', function() {
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.sms.send({
-      to: '919987409698',
-      txt: 'Here is your message for delivery',
+      to: randomPhone(),
+      txt: 'Order Delivery to Hampshire Received',
+      from: 'Mocha',
+      tag: 'MochaTest',
+      hidden: 'Hampshire',
+
     });
     expect(data).to.have.property('requestId');
   });
@@ -24,7 +29,7 @@ describe('SMS', function() {
 
     const smsStatusParams = {
       id: 'dc2bac6d-f375-4e19-9a02-ef0148991635',
-      extended: true
+      extended: true,
     };
 
     const data = await greenSmsInstance.sms.status(smsStatusParams);

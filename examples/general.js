@@ -1,5 +1,5 @@
-"use strict";
+'use strict';
 
-const { greenSmsInstance } = require("./greensms");
+const { greenSmsInstance } = require('./greensms');
 
-greenSmsInstance.general.status().then(data => console.log("Status Data", data)).catch(err => console.error("Status Error", err));
+greenSmsInstance.status().then(data => console.log('Status Data', data)).catch(err => console.error('Status Error', err));

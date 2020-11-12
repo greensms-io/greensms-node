@@ -1,4 +1,4 @@
-const { greenSmsInstance } = require("./greensms");
+const { greenSmsInstance } = require('./greensms');
 
 function cb(err, response) {
   console.error('Error ', err);

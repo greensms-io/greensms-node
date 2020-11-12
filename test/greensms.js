@@ -1,7 +1,5 @@
 'use strict';
 
-require('dotenv').config();
-
 const GreenSMS = require('../dist/index.cjs.js');
 
 const user = process.env.GREENSMS_USER;

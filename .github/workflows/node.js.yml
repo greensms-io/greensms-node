@@ -27,3 +27,9 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - run: npm run coverage
+# @todo PR only
+#    - name: Run ESLint
+#      uses: getsentry/action-eslint-fix@v1
+#      with:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

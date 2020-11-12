@@ -1,4 +1,4 @@
-const { greenSmsInstance } = require("./greensms");
+const { greenSmsInstance } = require('./greensms');
 
 async function getAccountBalance() {
   const balanceResponse = await greenSmsInstance.account.balance();

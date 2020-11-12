@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 require('dotenv').config();
 
-const GreenSMS = require("../dist/index.cjs.js");
+const GreenSMS = require('../dist/index.cjs.js');
 
 // Will pick token from process.env.GREENSMS_TOKEN
 const tokenInstance = new GreenSMS({}); //
