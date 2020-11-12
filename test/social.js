@@ -28,7 +28,7 @@ describe('Social', function() {
   it('should have a key status', async function() {
 
     const socialStatusParams = {
-      id: 'dc2bac6d-f375-4e19-9a02-ef0148991635',
+      id: 'caf3efb1-8aca-4387-9ed0-e667d315c5c9',
       extended: true,
     };
 
