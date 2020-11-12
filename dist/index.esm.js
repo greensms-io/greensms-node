@@ -1,52 +1,52 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError('Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === 'undefined' || !(Symbol.iterator in Object(arr))) {return;} var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) {break;} } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return'] != null) {_i['return']();} } finally { if (_d) {throw _e;} } } return _arr; }
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) {return arr;} }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError('Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) {return;} if (typeof o === 'string') {return _arrayLikeToArray(o, minLen);} var n = Object.prototype.toString.call(o).slice(8, -1); if (n === 'Object' && o.constructor) {n = o.constructor.name;} if (n === 'Map' || n === 'Set') {return Array.from(o);} if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) {return _arrayLikeToArray(o, minLen);} }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _iterableToArray(iter) { if (typeof Symbol !== 'undefined' && Symbol.iterator in Object(iter)) {return Array.from(iter);} }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) {return _arrayLikeToArray(arr);} }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) {len = arr.length;} for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) {symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; });} keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _typeof(obj) { '@babel/helpers - typeof'; if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) {descriptor.writable = true;} Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) {_defineProperties(Constructor.prototype, protoProps);} if (staticProps) {_defineProperties(Constructor, staticProps);} return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function'); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) {_setPrototypeOf(subClass, superClass);} }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived); var result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === 'object' || typeof call === 'function')) { return call; } return _assertThisInitialized(self); }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called'); } return self; }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _wrapNativeSuper(Class) { var _cache = typeof Map === 'function' ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) {return Class;} if (typeof Class !== 'function') { throw new TypeError('Super expression must either be null or a function'); } if (typeof _cache !== 'undefined') { if (_cache.has(Class)) {return _cache.get(Class);} _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
 
-function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) {_setPrototypeOf(instance, Class.prototype);} return instance; }; } return _construct.apply(null, arguments); }
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === 'undefined' || !Reflect.construct) {return false;} if (Reflect.construct.sham) {return false;} if (typeof Proxy === 'function') {return true;} try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf('[native code]') !== -1; }
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
@@ -58,7 +58,7 @@ import qs from 'qs';
 import URI from 'urijs';
 import { object, number, string, boolean as _boolean } from 'yup';
 
-var RestError = /*#__PURE__*/(function (_Error) {
+var RestError = /*#__PURE__*/function (_Error) {
   _inherits(RestError, _Error);
 
   var _super = _createSuper(RestError);
@@ -102,7 +102,7 @@ var RestError = /*#__PURE__*/(function (_Error) {
   }
 
   _createClass(RestError, [{
-    key: 'getErrorType',
+    key: "getErrorType",
     value: function getErrorType(code) {
       switch (code) {
         case 0:
@@ -120,22 +120,22 @@ var RestError = /*#__PURE__*/(function (_Error) {
         default:
           return 'INTERNAL_SERVER_ERROR';
       }
-    },
+    }
   }]);
 
   return RestError;
-}(/*#__PURE__*/_wrapNativeSuper(Error))); //#region  General
+}( /*#__PURE__*/_wrapNativeSuper(Error)); //#region  General
 
 
 var URL_PROTOCOL = 'https';
 var BASE_URL = 'api3.greensms.ru';
 var VERSIONS = {
-  v1: 'v1',
+  v1: 'v1'
 };
 var RES_STATUS_ACCEPTED = 'Accepted';
 var RES_STATUS_DELAYED = 'Delayed'; //#endregion
 
-var RestClient = /*#__PURE__*/(function () {
+var RestClient = /*#__PURE__*/function () {
   /**
    * Create an instance of RestClient
    * @param {object} opts - Options
@@ -175,7 +175,7 @@ var RestClient = /*#__PURE__*/(function () {
 
 
   _createClass(RestClient, [{
-    key: 'request',
+    key: "request",
     value: function request(opts, callback) {
       var _this2 = this;
 
@@ -202,13 +202,13 @@ var RestClient = /*#__PURE__*/(function () {
         method: opts.method,
         validateStatus: function validateStatus(status) {
           return status >= 100 && status < 600;
-        },
+        }
       };
       opts.headers = opts.headers || {};
 
       if (opts.data !== null && opts.data !== undefined) {
         options.data = qs.stringify(opts.data, {
-          arrayFormat: 'repeat',
+          arrayFormat: 'repeat'
         });
       }
 
@@ -217,7 +217,7 @@ var RestClient = /*#__PURE__*/(function () {
 
         options.paramsSerializer = function (params) {
           return qs.stringify(params, {
-            arrayFormat: 'repeat',
+            arrayFormat: 'repeat'
           });
         };
       }
@@ -231,7 +231,7 @@ var RestClient = /*#__PURE__*/(function () {
           }
 
           return resolve(data);
-        })['catch'](function (err) {
+        })["catch"](function (err) {
           var result = new RestError(err);
           return reject(result);
         });
@@ -240,21 +240,21 @@ var RestClient = /*#__PURE__*/(function () {
       if (callback !== null && typeof callback === 'function') {
         promise.then(function (data) {
           return callback(null, data);
-        })['catch'](function (err) {
+        })["catch"](function (err) {
           return callback(err);
         });
       } else {
         return promise;
       }
-    },
+    }
   }, {
-    key: '_addInterceptors',
+    key: "_addInterceptors",
     value: function _addInterceptors() {
       var _this3 = this;
 
       this.service.interceptors.request.use(function (config) {
         if (_this3.token) {
-          config.headers.Authorization = 'Bearer '.concat(_this3.token);
+          config.headers.Authorization = "Bearer ".concat(_this3.token);
         }
 
         if (_this3.defaultParams) {
@@ -284,11 +284,11 @@ var RestClient = /*#__PURE__*/(function () {
       }, function (err) {
         return Promise.reject(err);
       });
-    },
+    }
   }]);
 
   return RestClient;
-}());
+}();
 /**
 * Get base url of the API
 * @returns {string}
@@ -357,64 +357,64 @@ var ValidationSchema = {
   account: {
     v1: {
       token: object().shape({
-        expire: number().positive().integer(),
-      }),
-    },
+        expire: number().positive().integer()
+      })
+    }
   },
   call: {
     v1: {
       send: object().shape({
-        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
       }),
       status: object().shape({
         id: string().required().length(36),
-        extended: _boolean(),
-      }),
-    },
+        extended: _boolean()
+      })
+    }
   },
   whois: {
     v1: {
       lookup: object().shape({
-        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
-      }),
-    },
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
+      })
+    }
   },
   hlr: {
     v1: {
       send: object().shape({
-        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
       }),
       status: object().shape({
         id: string().required().length(36),
-        extended: _boolean(),
-      }),
-    },
+        extended: _boolean()
+      })
+    }
   },
   voice: {
     v1: {
       send: object().shape({
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         txt: string().required().min(1).max(5).matches(/^\d+$/, 'Invalid Code'),
-        lang: string().oneOf(['ru', 'en']),
+        lang: string().oneOf(['ru', 'en'])
       }),
       status: object().shape({
         id: string().required().length(36),
-        extended: _boolean(),
-      }),
-    },
+        extended: _boolean()
+      })
+    }
   },
   pay: {
     v1: {
       send: object().shape({
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         amount: number().required().min(1).positive(),
-        tag: string(),
+        tag: string()
       }),
       status: object().shape({
         id: string().required().length(36),
-        extended: _boolean(),
-      }),
-    },
+        extended: _boolean()
+      })
+    }
   },
   sms: {
     v1: {
@@ -423,13 +423,13 @@ var ValidationSchema = {
         txt: string().required().min(1),
         from: string().min(1),
         tag: string().min(1),
-        hidden: string().min(1),
+        hidden: string().min(1)
       }),
       status: object().shape({
         id: string().required().length(36),
-        extended: _boolean(),
-      }),
-    },
+        extended: _boolean()
+      })
+    }
   },
   viber: {
     v1: {
@@ -437,14 +437,29 @@ var ValidationSchema = {
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         txt: string().required().min(1),
         from: string().min(1),
-        cascade: string().oneOf(['sms', 'voice']),
+        cascade: string().oneOf(['sms', 'voice'])
       }),
       status: object().shape({
         id: string().required().length(36),
-        extended: _boolean(),
-      }),
-    },
+        extended: _boolean()
+      })
+    }
   },
+  social: {
+    v1: {
+      send: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        txt: string().required().min(1),
+        from: string().min(1),
+        tag: string().min(1),
+        hidden: string().min(1)
+      }),
+      status: object().shape({
+        id: string().required().length(36),
+        extended: _boolean()
+      })
+    }
+  }
 };
 var Modules = {
   account: {
@@ -453,18 +468,18 @@ var Modules = {
       v1: {
         balance: {
           args: null,
-          method: 'GET',
+          method: 'GET'
         },
         token: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         tariff: {
           args: null,
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   call: {
     schema: ValidationSchema.call,
@@ -472,14 +487,14 @@ var Modules = {
       v1: {
         send: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         status: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   hlr: {
     schema: ValidationSchema.hlr,
@@ -487,14 +502,14 @@ var Modules = {
       v1: {
         send: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         status: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   pay: {
     schema: ValidationSchema.pay,
@@ -502,14 +517,14 @@ var Modules = {
       v1: {
         send: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         status: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   sms: {
     schema: ValidationSchema.sms,
@@ -517,14 +532,14 @@ var Modules = {
       v1: {
         send: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         status: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   viber: {
     schema: ValidationSchema.viber,
@@ -532,14 +547,14 @@ var Modules = {
       v1: {
         send: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         status: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   voice: {
     schema: ValidationSchema.voice,
@@ -547,14 +562,14 @@ var Modules = {
       v1: {
         send: {
           args: ['params'],
-          method: 'POST',
+          method: 'POST'
         },
         status: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   whois: {
     schema: ValidationSchema.whois,
@@ -562,28 +577,43 @@ var Modules = {
       v1: {
         lookup: {
           args: ['params'],
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
   general: {
     schema: ValidationSchema.general,
-    static: true,
+    "static": true,
     versions: {
       v1: {
         status: {
           args: null,
-          method: 'GET',
-        },
-      },
-    },
+          method: 'GET'
+        }
+      }
+    }
   },
+  social: {
+    schema: ValidationSchema.social,
+    versions: {
+      v1: {
+        send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        status: {
+          args: ['params'],
+          method: 'GET'
+        }
+      }
+    }
+  }
 };
 
 function getError(err) {
   return Object.assign({}, err.params, {
-    message: err.message,
+    message: err.message
   });
 }
 /**
@@ -600,7 +630,7 @@ var validate = function validate(yupSchema, objData) {
     yupSchema.validateSync(objData, {
       strict: false,
       stripUnknown: true,
-      abortEarly: false,
+      abortEarly: false
     });
   } catch (err) {
     var errors = [];
@@ -616,14 +646,14 @@ var validate = function validate(yupSchema, objData) {
     errorResult = new RestError({
       code: 1,
       error: 'Validation Error',
-      params: errors,
+      params: errors
     });
   }
 
   return errorResult;
 };
 
-var ModuleLoader = /*#__PURE__*/(function () {
+var ModuleLoader = /*#__PURE__*/function () {
   function ModuleLoader() {
     _classCallCheck(this, ModuleLoader);
 
@@ -631,7 +661,7 @@ var ModuleLoader = /*#__PURE__*/(function () {
   }
 
   _createClass(ModuleLoader, [{
-    key: 'registerModules',
+    key: "registerModules",
     value: function registerModules(sharedOptions, filters) {
       var _this4 = this;
 
@@ -650,8 +680,8 @@ var ModuleLoader = /*#__PURE__*/(function () {
         var moduleVersions = moduleInfo.versions;
         var moduleSchema = moduleInfo.schema;
 
-        if (filters.loadStatic === true && moduleInfo['static'] !== true) {
-          return 'continue';
+        if (filters.loadStatic === true && moduleInfo["static"] !== true) {
+          return "continue";
         }
 
         var _loop2 = function _loop2(version) {
@@ -663,7 +693,7 @@ var ModuleLoader = /*#__PURE__*/(function () {
 
           var _loop3 = function _loop3(func) {
             if (_this4.moduleMap[moduleName][version][func]) {
-              return 'continue';
+              return "continue";
             }
 
             var funcDefinition = versionFunctions[func];
@@ -686,9 +716,9 @@ var ModuleLoader = /*#__PURE__*/(function () {
                 args = [];
               }
 
-              var _args$slice = args.slice(-1);
-              var _args$slice2 = _slicedToArray(_args$slice, 1);
-              var lastItem = _args$slice2[0];
+              var _args$slice = args.slice(-1),
+                  _args$slice2 = _slicedToArray(_args$slice, 1),
+                  lastItem = _args$slice2[0];
 
               if (lastItem && typeof lastItem === 'function') {
                 callback = lastItem;
@@ -703,7 +733,7 @@ var ModuleLoader = /*#__PURE__*/(function () {
 
               var urlArgs = [sharedOptions.baseUrl];
 
-              if (moduleInfo['static'] !== true) {
+              if (moduleInfo["static"] !== true) {
                 urlArgs.push(moduleName);
               }
 
@@ -712,7 +742,7 @@ var ModuleLoader = /*#__PURE__*/(function () {
               var promise = new Promise(function (resolve, reject) {
                 var requestObj = {
                   uri: apiUrl,
-                  method: funcDefinition.method,
+                  method: funcDefinition.method
                 }; // If API has params, then we validate and append to request object
 
                 if (params) {
@@ -727,13 +757,13 @@ var ModuleLoader = /*#__PURE__*/(function () {
                   requestObj.params = _objectSpread({}, params);
                 }
 
-                sharedOptions.restClient.request(requestObj).then(resolve)['catch'](reject);
+                sharedOptions.restClient.request(requestObj).then(resolve)["catch"](reject);
               });
 
               if (callback !== null && typeof callback === 'function') {
                 promise.then(function (data) {
                   return callback(null, data);
-                })['catch'](function (err) {
+                })["catch"](function (err) {
                   return callback(err);
                 });
               } else {
@@ -745,7 +775,7 @@ var ModuleLoader = /*#__PURE__*/(function () {
               _this4.moduleMap[moduleName][func] = _this4.moduleMap[moduleName][version][func];
             }
 
-            if (moduleInfo['static'] === true) {
+            if (moduleInfo["static"] === true) {
               _this4.moduleMap[func] = _this4.moduleMap[moduleName][version][func];
               delete _this4.moduleMap[moduleName]; // Remove static functio mapping
             }
@@ -754,7 +784,7 @@ var ModuleLoader = /*#__PURE__*/(function () {
           for (var func in versionFunctions) {
             var _ret2 = _loop3(func);
 
-            if (_ret2 === 'continue') {continue;}
+            if (_ret2 === "continue") continue;
           }
         };
 
@@ -766,17 +796,17 @@ var ModuleLoader = /*#__PURE__*/(function () {
       for (var moduleName in Modules) {
         var _ret = _loop(moduleName);
 
-        if (_ret === 'continue') {continue;}
+        if (_ret === "continue") continue;
       }
 
       return this.moduleMap;
-    },
+    }
   }]);
 
   return ModuleLoader;
-}());
+}();
 
-var GreenSMS = /*#__PURE__*/(function () {
+var GreenSMS = /*#__PURE__*/function () {
   /**
    * Initialize GreenSMS Client
    * @param {object} opts - Options
@@ -791,13 +821,13 @@ var GreenSMS = /*#__PURE__*/(function () {
     _classCallCheck(this, GreenSMS);
 
     opts = opts || {};
-    var _opts = opts;
-    var user = _opts.user;
-    var pass = _opts.pass;
-    var token = _opts.token;
-    var useTokenForRequests = _opts.useTokenForRequests;
-    var camelCaseResponse = _opts.camelCaseResponse;
-    var version = _opts.version;
+    var _opts = opts,
+        user = _opts.user,
+        pass = _opts.pass,
+        token = _opts.token,
+        useTokenForRequests = _opts.useTokenForRequests,
+        camelCaseResponse = _opts.camelCaseResponse,
+        version = _opts.version;
     this.token = null;
 
     if (token) {
@@ -828,14 +858,14 @@ var GreenSMS = /*#__PURE__*/(function () {
       version: getVersion(version),
       baseUrl: baseUrl(),
       restClient: this._getHttpClient({
-        useCamelCase: camelCaseResponse,
-      }),
+        useCamelCase: camelCaseResponse
+      })
     };
     this.addModules(sharedOptions);
   }
 
   _createClass(GreenSMS, [{
-    key: 'addModules',
+    key: "addModules",
     value: function addModules(sharedOptions) {
       var moduleLoader = new ModuleLoader();
       var modules = moduleLoader.registerModules(sharedOptions);
@@ -844,9 +874,9 @@ var GreenSMS = /*#__PURE__*/(function () {
         var currentModule = modules[moduleKey];
         this[moduleKey] = currentModule;
       }
-    },
+    }
   }, {
-    key: '_getHttpClient',
+    key: "_getHttpClient",
     value: function _getHttpClient(httpParams) {
       httpParams = httpParams || {};
       var params = {};
@@ -858,15 +888,15 @@ var GreenSMS = /*#__PURE__*/(function () {
 
       var httpClientOptions = _objectSpread(_objectSpread({}, httpParams), {
         token: this.token,
-        params: params,
+        params: params
       });
 
       var restClient = new RestClient(httpClientOptions);
       return restClient;
-    },
+    }
   }]);
 
   return GreenSMS;
-}());
+}();
 
 export default GreenSMS;
