@@ -8,6 +8,8 @@ chai.use(chaiAsPromise);
 
 describe('Voice', function() {
 
+  let requestId = null;
+
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.voice.send({
       to: randomPhone(),
@@ -15,6 +17,8 @@ describe('Voice', function() {
       lang: 'en',
     });
     expect(data).to.have.property('requestId');
+    requestId = data.requestId;
+
   });
 
   it('should throw an Error if to is not specified', async function() {
@@ -24,7 +28,7 @@ describe('Voice', function() {
   it('should have a key status', async function() {
 
     const voiceStatusParams = {
-      id: '41f23094-deda-4cab-ac9c-3ab4f2fee9e6',
+      id: requestId,
       extended: true,
     };
 

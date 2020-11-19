@@ -9,6 +9,8 @@ chai.use(chaiAsPromise);
 
 describe('SMS', function() {
 
+  let requestId = null;
+
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.sms.send({
       to: randomPhone(),
@@ -19,6 +21,7 @@ describe('SMS', function() {
 
     });
     expect(data).to.have.property('requestId');
+    requestId = data.requestId;
   });
 
   it('should throw an Error if to is not specified', async function() {
@@ -28,7 +31,7 @@ describe('SMS', function() {
   it('should have a key status', async function() {
 
     const smsStatusParams = {
-      id: 'dc2bac6d-f375-4e19-9a02-ef0148991635',
+      id: requestId,
       extended: true,
     };
 
