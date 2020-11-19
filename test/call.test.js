@@ -1,12 +1,14 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-const  { randomPhone } = require('./utils');
+const  { randomPhone, timeout } = require('./utils');
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
 
 describe('Call', function() {
+
+  let requestId = null;
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.call.send({
@@ -14,6 +16,9 @@ describe('Call', function() {
     });
     expect(data).to.have.property('requestId');
     expect(data).to.have.property('code');
+
+    requestId = data.requestId;
+
   });
 
   it('should throw an Error if to is not specified', async function() {
@@ -22,8 +27,10 @@ describe('Call', function() {
 
   it('should have a key status', async function() {
 
+    await timeout(2000);
+
     const callStatusParams = {
-      id: '1fd4ac4d-6e4f-4e32-b6e4-8087d3466f55',
+      id: requestId,
       extended: true,
     };
 

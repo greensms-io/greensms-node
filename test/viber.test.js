@@ -1,13 +1,15 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-const  { randomPhone } = require('./utils');
+const  { randomPhone, timeout } = require('./utils');
 
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
 
 describe('Viber', function() {
+
+  let requestId = null;
 
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.viber.send({
@@ -17,6 +19,8 @@ describe('Viber', function() {
       cascade: 'sms',
     });
     expect(data).to.have.property('requestId');
+    requestId = data.requestId;
+
   });
 
   it('should throw an Error if to is not specified', async function() {
@@ -25,8 +29,10 @@ describe('Viber', function() {
 
   it('should have a key status', async function() {
 
+    await timeout(2000);
+
     const viberStatusParams = {
-      id: '0b18fab4-0c5d-4a8b-8ee4-057a59596c7d',
+      id: requestId,
       extended: true,
     };
 
