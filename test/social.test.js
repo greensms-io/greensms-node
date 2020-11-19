@@ -9,6 +9,8 @@ chai.use(chaiAsPromise);
 
 describe('Social', function() {
 
+  let requestId = null;
+
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.social.send({
       to: randomPhone(),
@@ -19,6 +21,7 @@ describe('Social', function() {
 
     });
     expect(data).to.have.property('requestId');
+    requestId = data.requestId;
   });
 
   it('should throw an Error if to is not specified', async function() {
@@ -28,7 +31,7 @@ describe('Social', function() {
   it('should have a key status', async function() {
 
     const socialStatusParams = {
-      id: 'caf3efb1-8aca-4387-9ed0-e667d315c5c9',
+      id: requestId,
       extended: true,
     };
 
