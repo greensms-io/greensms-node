@@ -6,6 +6,7 @@ const chaiAsPromise = require('chai-as-promised');
 const { expect } = chai;
 chai.use(chaiAsPromise);
 
+const { timeout } = require('./utils');
 const GreenSMS = require('../dist/index.cjs.js');
 const { greenSmsInstance } = require('./greensms');
 
@@ -42,7 +43,3 @@ describe('Token', function() {
 
   });
 });
-
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}

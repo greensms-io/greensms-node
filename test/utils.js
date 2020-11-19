@@ -8,7 +8,13 @@ function randomPhone(minRange, maxRange) {
   return randomNumber(min, max);
 }
 
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 module.exports = {
   randomNumber,
   randomPhone,
+  timeout
 };

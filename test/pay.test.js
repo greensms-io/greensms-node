@@ -1,7 +1,7 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-const { randomPhone } = require('./utils');
+const { randomPhone, timeout } = require('./utils');
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
@@ -26,6 +26,8 @@ describe('Pay', function() {
   });
 
   it('should have a key status', async function() {
+
+    await timeout(2000);
 
     const paymentStatusParams = {
       id: requestId,
