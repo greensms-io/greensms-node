@@ -8,6 +8,8 @@ chai.use(chaiAsPromise);
 
 describe('Pay', function() {
 
+  let requestId = null;
+
   it('should have a key request_id', async function() {
     const data = await greenSmsInstance.pay.send({
       to: randomPhone(),
@@ -15,6 +17,8 @@ describe('Pay', function() {
       tag: 'MochaTest',
     });
     expect(data).to.have.property('requestId');
+    requestId = data.requestId;
+
   });
 
   it('should throw an Error if to is not specified', async function() {
@@ -23,8 +27,10 @@ describe('Pay', function() {
 
   it('should have a key status', async function() {
 
+    await timeout(2000);
+
     const paymentStatusParams = {
-      id: '60f231d9-16ec-4313-842e-6e6853063482',
+      id: requestId,
     };
 
     const data = await greenSmsInstance.pay.status(paymentStatusParams);
