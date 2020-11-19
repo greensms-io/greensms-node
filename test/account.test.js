@@ -15,7 +15,7 @@ describe('Account', function() {
   });
 
   it('should have a key token', async function() {
-    const data = await greenSmsInstance.account.token(expire=100);
+    const data = await greenSmsInstance.account.token({expire: 100});
     expect(data).to.have.property('accessToken');
   });
 
