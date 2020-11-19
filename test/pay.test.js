@@ -27,8 +27,6 @@ describe('Pay', function() {
 
   it('should have a key status', async function() {
 
-    await timeout(2000);
-
     const paymentStatusParams = {
       id: requestId,
     };
