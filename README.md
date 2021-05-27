@@ -25,7 +25,7 @@ Check out these [code examples](examples) in JavaScript and TypeScript to get up
 ```javascript
 const GreenSMS = require("greensms");
 // Register at my.greeensms.ru first
-client = new GreenSMS({ user: "test", pass: "test" });
+const client = new GreenSMS({ user: "test", pass: "test" });
 
 client.sms
   .send({
