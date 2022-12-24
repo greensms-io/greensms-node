@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/greensms-ru/greensms-node#readme",
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "1.2.1",
     "humps": "^2.0.1",
     "jsonschema": "^1.3.0",
     "qs": "^6.9.4",
