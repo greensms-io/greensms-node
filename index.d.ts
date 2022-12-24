@@ -1,4 +1,4 @@
-enum APIVersion {
+declare enum APIVersion {
   V1 = "V1",
 }
 
