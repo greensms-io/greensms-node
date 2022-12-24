@@ -22,7 +22,7 @@
     "_lint": "node ./node_modules/jshint/dist/jshint.js ./lib",
     "_jsdoc": "node ./node_modules/jsdoc/jsdoc.js -c jsdoc.conf.json",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "GREENSMS_USER=test GREENSMS_PASS=test nyc mocha --timeout 10000"
+    "test": "cross-env GREENSMS_USER=test GREENSMS_PASS=test nyc mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,7 @@
     "chai": "4.3.7",
     "chai-as-promised": "7.1.1",
     "coveralls": "3.1.1",
+    "cross-env": "7.0.3",
     "dotenv": "16.0.3",
     "eslint": "7.11.0",
     "jsdoc": "4.0.0",
