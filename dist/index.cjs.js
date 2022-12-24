@@ -230,11 +230,12 @@ var RestClient = /*#__PURE__*/function () {
 
       if (opts.params !== null && opts.params !== undefined) {
         options.params = opts.params;
-
-        options.paramsSerializer = function (params) {
-          return qs__default['default'].stringify(params, {
-            arrayFormat: 'repeat'
-          });
+        options.paramsSerializer = {
+          encode: function encode(params) {
+            return qs__default['default'].stringify(params, {
+              arrayFormat: 'repeat'
+            });
+          }
         };
       }
 
