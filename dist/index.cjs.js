@@ -144,6 +144,8 @@ var RestError = /*#__PURE__*/function (_Error) {
 
 
 var URL_PROTOCOL = 'https';
+var SDK_NAME = 'greensms-node';
+var SDK_VERSION = '1.1.0';
 var BASE_URL = 'api3.greensms.ru';
 var VERSIONS = {
   v1: 'v1'
@@ -171,6 +173,7 @@ var RestClient = /*#__PURE__*/function () {
     this.defaultData = opts.data || {};
     this.defaultParams = opts.params || {};
     this.useCamelCase = typeof opts.useCamelCase === 'boolean' ? opts.useCamelCase : false;
+    this.sdkVersionHeader = "".concat(SDK_NAME, " ").concat(SDK_VERSION);
 
     this._addInterceptors();
   }
@@ -275,6 +278,7 @@ var RestClient = /*#__PURE__*/function () {
           config.data = _objectSpread(_objectSpread({}, config.data), _this3.defaultData);
         }
 
+        config.headers['source'] = _this3.sdkVersionHeader;
         return config;
       });
       this.service.interceptors.response.use(function (response) {
