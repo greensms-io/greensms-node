@@ -499,6 +499,10 @@ var Modules = {
         status: {
           args: ['params'],
           method: 'GET'
+        },
+        receive: {
+          args: ['params'],
+          method: 'POST'
         }
       }
     }

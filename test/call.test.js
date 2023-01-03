@@ -10,7 +10,7 @@ describe('Call', function () {
 
   let requestId = null;
 
-  it('should have a key request_id', async function () {
+  it('should have a key request_id when send API is called', async function () {
     const data = await greenSmsInstance.call.send({
       to: randomPhone(),
       language: 'ru',
@@ -39,6 +39,19 @@ describe('Call', function () {
     const data = await greenSmsInstance.call.status(callStatusParams);
     expect(data).to.have.property('statusCode');
   });
+
+  it('should have a key request_id when receive API is called', async function () {
+    const data = await greenSmsInstance.call.receive({
+      to: randomPhone(),
+      tag: 'aaeb96d6-cb0e-46f2-8d09-2cd5c9ea421c',
+    });
+    expect(data).to.have.property('requestId');
+    expect(data).to.have.property('number');
+
+    requestId = data.requestId;
+
+  });
+
 
 });
 

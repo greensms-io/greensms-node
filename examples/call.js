@@ -16,3 +16,12 @@ greenSmsInstance.call.status(callStatusParams).then((data) => {
 }).catch(err => {
   console.error('Call Status Error', err);
 });
+
+const callReceiveParams = {
+  to: '919987409698',
+  toll_free: 'true',
+  tag: 'aaeb96d6-cb0e-46f2-8d09-2cd5c9ea4211',
+};
+
+
+greenSmsInstance.call.receive(callReceiveParams).then((data) => console.log('Receive Call Data', data)).catch(err => console.error('Receive Call Error', err));
