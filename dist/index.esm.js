@@ -362,7 +362,10 @@ var ValidationSchema = {
   call: {
     v1: {
       send: object().shape({
-        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        voice: _boolean(),
+        language: string().oneOf(['ru', 'en']),
+        tag: string().max(36)
       }),
       status: object().shape({
         id: string().required().length(36),
