@@ -17,7 +17,7 @@ declare class GreenSMS {
    * @constructor
    * @param GreenSMSOptions
    */
-  constructor(GreenSMSOptions);
+  constructor(options: GreenSMSOptions);
 }
 
 export { GreenSMS, GreenSMSOptions };
