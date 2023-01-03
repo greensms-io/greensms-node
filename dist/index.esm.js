@@ -365,11 +365,16 @@ var ValidationSchema = {
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         voice: _boolean(),
         language: string().oneOf(['ru', 'en']),
-        tag: string().max(36)
+        tag: string().min(1).max(36)
       }),
       status: object().shape({
         id: string().required().length(36),
         extended: _boolean()
+      }),
+      receive: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        toll_free: _boolean(),
+        tag: string().min(1).max(36)
       })
     }
   },
@@ -397,7 +402,7 @@ var ValidationSchema = {
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         txt: string().required().min(1).max(5).matches(/^\d+$/, 'Invalid Code'),
         language: string().oneOf(['ru', 'en']),
-        tag: string().max(36)
+        tag: string().min(1).max(36)
       }),
       status: object().shape({
         id: string().required().length(36),
