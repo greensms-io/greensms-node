@@ -214,13 +214,6 @@ var RestClient = /*#__PURE__*/function () {
 
       if (opts.params !== null && opts.params !== undefined) {
         options.params = opts.params;
-        options.paramsSerializer = {
-          encode: function encode(params) {
-            return qs.stringify(params, {
-              arrayFormat: 'repeat'
-            });
-          }
-        };
       }
 
       var promise = new Promise(function (resolve, reject) {
