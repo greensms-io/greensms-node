@@ -153,6 +153,8 @@ var VERSIONS = {
 var RES_STATUS_ACCEPTED = 'Accepted';
 var RES_STATUS_DELAYED = 'Delayed'; //#endregion
 
+var HEADER_USER_AGENT = 'User-Agent';
+
 var RestClient = /*#__PURE__*/function () {
   /**
    * Create an instance of RestClient
@@ -278,7 +280,7 @@ var RestClient = /*#__PURE__*/function () {
           config.data = _objectSpread(_objectSpread({}, config.data), _this3.defaultData);
         }
 
-        config.headers['source'] = _this3.sdkVersionHeader;
+        config.headers[HEADER_USER_AGENT] = _this3.sdkVersionHeader;
         return config;
       });
       this.service.interceptors.response.use(function (response) {
@@ -485,6 +487,27 @@ var ValidationSchema = {
         extended: Yup["boolean"]()
       })
     }
+  },
+  vk: {
+    v1: {
+      send: Yup.object().shape({
+        to: Yup.string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        txt: Yup.string().required().min(1).max(2048),
+        from: Yup.string().min(1).max(11),
+        tag: Yup.string().min(1).max(36),
+        cascade: Yup.array().transform(function (value, originalValue) {
+          if (this.isType(value) && value !== null) {
+            return value;
+          }
+
+          return originalValue ? originalValue.split(/[\s,]+/) : [];
+        }).of(Yup.string().oneOf(['sms', 'voice', 'viber']))
+      }),
+      status: Yup.object().shape({
+        id: Yup.string().required().length(36),
+        extended: Yup["boolean"]()
+      })
+    }
   }
 };
 var Modules = {
@@ -626,6 +649,21 @@ var Modules = {
   },
   social: {
     schema: ValidationSchema.social,
+    versions: {
+      v1: {
+        send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        status: {
+          args: ['params'],
+          method: 'GET'
+        }
+      }
+    }
+  },
+  vk: {
+    schema: ValidationSchema.vk,
     versions: {
       v1: {
         send: {

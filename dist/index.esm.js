@@ -56,7 +56,7 @@ import axios from 'axios';
 import humps from 'humps';
 import qs from 'qs';
 import URI from 'urijs';
-import { object, number, string, boolean as _boolean } from 'yup';
+import { object, number, string, boolean as _boolean, array } from 'yup';
 
 var RestError = /*#__PURE__*/function (_Error) {
   _inherits(RestError, _Error);
@@ -136,6 +136,8 @@ var VERSIONS = {
 };
 var RES_STATUS_ACCEPTED = 'Accepted';
 var RES_STATUS_DELAYED = 'Delayed'; //#endregion
+
+var HEADER_USER_AGENT = 'User-Agent';
 
 var RestClient = /*#__PURE__*/function () {
   /**
@@ -262,7 +264,7 @@ var RestClient = /*#__PURE__*/function () {
           config.data = _objectSpread(_objectSpread({}, config.data), _this3.defaultData);
         }
 
-        config.headers['source'] = _this3.sdkVersionHeader;
+        config.headers[HEADER_USER_AGENT] = _this3.sdkVersionHeader;
         return config;
       });
       this.service.interceptors.response.use(function (response) {
@@ -466,6 +468,27 @@ var ValidationSchema = {
         extended: _boolean()
       })
     }
+  },
+  vk: {
+    v1: {
+      send: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        txt: string().required().min(1).max(2048),
+        from: string().min(1).max(11),
+        tag: string().min(1).max(36),
+        cascade: array().transform(function (value, originalValue) {
+          if (this.isType(value) && value !== null) {
+            return value;
+          }
+
+          return originalValue ? originalValue.split(/[\s,]+/) : [];
+        }).of(string().oneOf(['sms', 'voice', 'viber']))
+      }),
+      status: object().shape({
+        id: string().required().length(36),
+        extended: _boolean()
+      })
+    }
   }
 };
 var Modules = {
@@ -607,6 +630,21 @@ var Modules = {
   },
   social: {
     schema: ValidationSchema.social,
+    versions: {
+      v1: {
+        send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        status: {
+          args: ['params'],
+          method: 'GET'
+        }
+      }
+    }
+  },
+  vk: {
+    schema: ValidationSchema.vk,
     versions: {
       v1: {
         send: {
