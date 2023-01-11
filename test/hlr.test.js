@@ -13,7 +13,7 @@ describe('HLR', function() {
   it('should have a key request_id', async function() {
     const toNumber = randomPhone(79260000000, 79260999999);
     const data = await greenSmsInstance.hlr.send({
-      to: toNumber,
+      to: toNumber.toString(),
     });
     expect(data).to.have.property('requestId');
     requestId = data.requestId;
