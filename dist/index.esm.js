@@ -354,6 +354,7 @@ var getVersion = function getVersion(version) {
 };
 
 var NUMBER_OR_UUID_REGEXP = /^(\d+)|([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12})$/gi;
+var URL_REGEXP = /^((https?|ftp):\/\/)?(www.)?(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
 var ValidationSchema = {
   account: {
     v1: {
@@ -484,6 +485,24 @@ var ValidationSchema = {
 
           return originalValue ? originalValue.split(/[\s,]+/) : [];
         }).of(string().oneOf(['sms', 'voice', 'viber']))
+      }),
+      status: object().shape({
+        id: string().required().length(36),
+        extended: _boolean()
+      })
+    }
+  },
+  whatsapp: {
+    v1: {
+      send: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        txt: string().required().min(1).max(10000),
+        from: string().min(1),
+        file: string().min(1).max(256),
+        tag: string().min(1).max(36)
+      }),
+      webhook: object().shape({
+        url: string().required().min(1).matches(URL_REGEXP, 'Invalid URL')
       }),
       status: object().shape({
         id: string().required().length(36),
@@ -649,6 +668,25 @@ var Modules = {
     versions: {
       v1: {
         send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        status: {
+          args: ['params'],
+          method: 'GET'
+        }
+      }
+    }
+  },
+  whatsapp: {
+    schema: ValidationSchema.whatsapp,
+    versions: {
+      v1: {
+        send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        webhook: {
           args: ['params'],
           method: 'POST'
         },
