@@ -372,6 +372,7 @@ var getVersion = function getVersion(version) {
   return VERSIONS[version];
 };
 
+var NUMBER_OR_UUID_REGEXP = /^(\d+)|([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12})$/gi;
 var ValidationSchema = {
   account: {
     v1: {
@@ -439,7 +440,7 @@ var ValidationSchema = {
         tag: Yup.string()
       }),
       status: Yup.object().shape({
-        id: Yup.string().required().length(36),
+        id: Yup.string().required().min(1).max(36).matches(NUMBER_OR_UUID_REGEXP, 'Invalid Status'),
         extended: Yup["boolean"]()
       })
     }

@@ -7,7 +7,7 @@ const payParams = {
 greenSmsInstance.pay.send(payParams).then((data) => console.log('Send Payment Data', data)).catch(err => console.error('Send Payment Error', err));
 
 const paymentStatusParams = {
-  id: '60f231d9-16ec-4313-842e-6e6853063482',
+  id: 3431111111111111, // '60f231d9-16ec-4313-842e-6e6853063482',
 };
 
 greenSmsInstance.pay.status(paymentStatusParams).then((data) => {

@@ -30,7 +30,7 @@ describe('Pay', function () {
     await timeout(2000);
 
     const paymentStatusParams = {
-      id: '60f231d9-16ec-4313-842e-6e6853063482',
+      id: requestId,
     };
 
     const data = await greenSmsInstance.pay.status(paymentStatusParams);
