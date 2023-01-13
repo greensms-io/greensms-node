@@ -1,17 +1,17 @@
 const { greenSmsInstance } = require('./greensms');
 const chai = require('chai');
 const chaiAsPromise = require('chai-as-promised');
-const  { randomPhone, timeout } = require('./utils');
+const { randomPhone, timeout } = require('./utils');
 const { expect } = chai;
 
 chai.use(chaiAsPromise);
 
-describe('HLR', function() {
+describe('HLR', function () {
 
   let requestId = null;
 
-  it('should have a key request_id', async function() {
-    const toNumber = randomPhone(79260000000, 79260999999);
+  it('should have a key request_id', async function () {
+    const toNumber = '79150000000';
     const data = await greenSmsInstance.hlr.send({
       to: toNumber.toString(),
     });
@@ -19,11 +19,11 @@ describe('HLR', function() {
     requestId = data.requestId;
   });
 
-  it('should throw an Error if to is not specified', async function() {
+  it('should throw an Error if to is not specified', async function () {
     await expect(greenSmsInstance.hlr.send()).to.be.rejectedWith(Error);
   });
 
-  it('should have a key status', async function() {
+  it('should have a key status', async function () {
 
     await timeout(2000);
 
@@ -33,6 +33,7 @@ describe('HLR', function() {
       to: toNumber, // TODO: Remove this field when the API is updated
     };
     const data = await greenSmsInstance.hlr.status(hlrStatusParams);
+    console.log(data);
     expect(data).to.have.property('status');
   });
 
