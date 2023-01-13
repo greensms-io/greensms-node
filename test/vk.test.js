@@ -9,37 +9,37 @@ chai.use(chaiAsPromise);
 
 describe('VK', function () {
 
-    let requestId = null;
+  let requestId = null;
 
-    it('should have a key request_id', async function () {
-        const data = await greenSmsInstance.social.send({
-            to: randomPhone(),
-            txt: 'Order Delivery to Hampshire Received',
-            from: 'Mocha',
-            tag: 'MochaTest',
-            cascase: 'sms, voice',
+  it('should have a key request_id', async function () {
+    const data = await greenSmsInstance.social.send({
+      to: randomPhone(),
+      txt: 'Order Delivery to Hampshire Received',
+      from: 'Mocha',
+      tag: 'MochaTest',
+      cascase: 'sms, voice',
 
-        });
-        expect(data).to.have.property('requestId');
-        requestId = data.requestId;
     });
+    expect(data).to.have.property('requestId');
+    requestId = data.requestId;
+  });
 
-    it('should throw an Error if to is not specified', async function () {
-        await expect(greenSmsInstance.social.send()).to.be.rejectedWith(Error);
-    });
+  it('should throw an Error if to is not specified', async function () {
+    await expect(greenSmsInstance.social.send()).to.be.rejectedWith(Error);
+  });
 
-    it('should have a key status', async function () {
+  it('should have a key status', async function () {
 
-        await timeout(2000);
+    await timeout(2000);
 
-        const socialStatusParams = {
-            id: requestId,
-            extended: true,
-        };
+    const socialStatusParams = {
+      id: requestId,
+      extended: true,
+    };
 
-        const data = await greenSmsInstance.social.status(socialStatusParams);
-        expect(data).to.have.property('status');
-    });
+    const data = await greenSmsInstance.social.status(socialStatusParams);
+    expect(data).to.have.property('status');
+  });
 
 });
 
