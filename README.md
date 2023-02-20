@@ -76,7 +76,6 @@ function cb(err, response) {
 greenSmsInstance.account.balance(cb);
 ```
 
-
 ## Compatibility
 
 `greensms-node` is compatible with Node.js 12+ and tested until 19.x.
