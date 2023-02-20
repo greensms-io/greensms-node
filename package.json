@@ -1,7 +1,7 @@
 {
   "name": "greensms",
-  "version": "1.1.0",
-  "description": "GREENSMS API: SMS, Viber, Voce, Call, HLR, Pay",
+  "version": "1.9.1",
+  "description": "GREENSMS API: SMS, Call, Voice, VK, WhatsApp, Viber, HLR, Pay",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
@@ -14,7 +14,7 @@
     "lib"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "scripts": {
     "_watch": "rollup -c -w",

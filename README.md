@@ -76,6 +76,12 @@ function cb(err, response) {
 greenSmsInstance.account.balance(cb);
 ```
 
+
+## Compatibility
+
+`greensms-node` is compatible with Node.js 12+ and tested until 19.x.
+
+
 ## Methods
 
 - You can either use username/password combination or auth token to create an object with constructor

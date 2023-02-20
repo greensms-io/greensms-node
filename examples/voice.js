@@ -3,7 +3,7 @@ const { greenSmsInstance } = require('./greensms');
 const voiceParams = {
   to: '919987409698',
   txt: 1234,
-  language: 'en',
+  lang: 'en',
 };
 greenSmsInstance.voice.send(voiceParams).then((data) => {
   console.log('Send Voice Data', data);

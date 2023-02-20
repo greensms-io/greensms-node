@@ -129,7 +129,7 @@ var RestError = /*#__PURE__*/function (_Error) {
 
 var URL_PROTOCOL = 'https';
 var SDK_NAME = 'greensms-node';
-var SDK_VERSION = '1.1.0';
+var SDK_VERSION = '1.9.1';
 var BASE_URL = 'api3.greensms.ru';
 var VERSIONS = {
   v1: 'v1'
@@ -405,7 +405,7 @@ var ValidationSchema = {
       send: object().shape({
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         txt: string().required().min(1).max(5).matches(/^\d+$/, 'Invalid Code'),
-        language: string().oneOf(['ru', 'en']),
+        lang: string().oneOf(['ru', 'en']),
         tag: string().min(1).max(36)
       }),
       status: object().shape({

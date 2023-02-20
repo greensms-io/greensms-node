@@ -14,7 +14,7 @@ describe('Voice', function () {
     const data = await greenSmsInstance.voice.send({
       to: randomPhone(),
       txt: '1001',
-      language: 'en',
+      lang: 'en',
     });
     expect(data).to.have.property('requestId');
     requestId = data.requestId;
