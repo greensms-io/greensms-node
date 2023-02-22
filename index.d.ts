@@ -1,13 +1,14 @@
-enum APIVersion {
+declare enum APIVersion {
   V1 = "V1",
 }
 
-export interface GreenSMSRequestConfig {
-  username?: string;
-  password?: string;
+export interface GreenSMSOptions {
+  user?: string;
+  pass?: string;
   token?: string;
   useTokenForRequests?: boolean;
   version?: APIVersion;
+  camelCaseResponse?: boolean;
 }
 
 export declare class GreenSMS {
@@ -16,5 +17,5 @@ export declare class GreenSMS {
    * @constructor
    * @param GreenSMSOptions
    */
-  constructor(GreenSMSOptions);
+  constructor(options: GreenSMSOptions);
 }

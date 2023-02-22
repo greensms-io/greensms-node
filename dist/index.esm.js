@@ -56,7 +56,7 @@ import axios from 'axios';
 import humps from 'humps';
 import qs from 'qs';
 import URI from 'urijs';
-import { object, number, string, boolean as _boolean } from 'yup';
+import { object, number, string, boolean as _boolean, array } from 'yup';
 
 var RestError = /*#__PURE__*/function (_Error) {
   _inherits(RestError, _Error);
@@ -128,12 +128,16 @@ var RestError = /*#__PURE__*/function (_Error) {
 
 
 var URL_PROTOCOL = 'https';
+var SDK_NAME = 'greensms-node';
+var SDK_VERSION = '1.9.1';
 var BASE_URL = 'api3.greensms.ru';
 var VERSIONS = {
   v1: 'v1'
 };
 var RES_STATUS_ACCEPTED = 'Accepted';
 var RES_STATUS_DELAYED = 'Delayed'; //#endregion
+
+var HEADER_USER_AGENT = 'User-Agent';
 
 var RestClient = /*#__PURE__*/function () {
   /**
@@ -155,6 +159,7 @@ var RestClient = /*#__PURE__*/function () {
     this.defaultData = opts.data || {};
     this.defaultParams = opts.params || {};
     this.useCamelCase = typeof opts.useCamelCase === 'boolean' ? opts.useCamelCase : false;
+    this.sdkVersionHeader = "".concat(SDK_NAME, " ").concat(SDK_VERSION);
 
     this._addInterceptors();
   }
@@ -214,12 +219,6 @@ var RestClient = /*#__PURE__*/function () {
 
       if (opts.params !== null && opts.params !== undefined) {
         options.params = opts.params;
-
-        options.paramsSerializer = function (params) {
-          return qs.stringify(params, {
-            arrayFormat: 'repeat'
-          });
-        };
       }
 
       var promise = new Promise(function (resolve, reject) {
@@ -265,6 +264,7 @@ var RestClient = /*#__PURE__*/function () {
           config.data = _objectSpread(_objectSpread({}, config.data), _this3.defaultData);
         }
 
+        config.headers[HEADER_USER_AGENT] = _this3.sdkVersionHeader;
         return config;
       });
       this.service.interceptors.response.use(function (response) {
@@ -353,6 +353,8 @@ var getVersion = function getVersion(version) {
   return VERSIONS[version];
 };
 
+var NUMBER_OR_UUID_REGEXP = /^(\d+)|([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12})$/gi;
+var URL_REGEXP = /^((https?|ftp):\/\/)?(www.)?(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
 var ValidationSchema = {
   account: {
     v1: {
@@ -364,11 +366,19 @@ var ValidationSchema = {
   call: {
     v1: {
       send: object().shape({
-        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number')
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        voice: _boolean(),
+        language: string().oneOf(['ru', 'en']),
+        tag: string().min(1).max(36)
       }),
       status: object().shape({
         id: string().required().length(36),
         extended: _boolean()
+      }),
+      receive: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        toll_free: _boolean(),
+        tag: string().min(1).max(36)
       })
     }
   },
@@ -395,7 +405,8 @@ var ValidationSchema = {
       send: object().shape({
         to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
         txt: string().required().min(1).max(5).matches(/^\d+$/, 'Invalid Code'),
-        lang: string().oneOf(['ru', 'en'])
+        lang: string().oneOf(['ru', 'en']),
+        tag: string().min(1).max(36)
       }),
       status: object().shape({
         id: string().required().length(36),
@@ -411,7 +422,7 @@ var ValidationSchema = {
         tag: string()
       }),
       status: object().shape({
-        id: string().required().length(36),
+        id: string().required().min(1).max(36).matches(NUMBER_OR_UUID_REGEXP, 'Invalid Status'),
         extended: _boolean()
       })
     }
@@ -459,6 +470,45 @@ var ValidationSchema = {
         extended: _boolean()
       })
     }
+  },
+  vk: {
+    v1: {
+      send: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        txt: string().required().min(1).max(2048),
+        from: string().min(1).max(11),
+        tag: string().min(1).max(36),
+        cascade: array().transform(function (value, originalValue) {
+          if (this.isType(value) && value !== null) {
+            return value;
+          }
+
+          return originalValue ? originalValue.split(/[\s,]+/) : [];
+        }).of(string().oneOf(['sms', 'voice', 'viber']))
+      }),
+      status: object().shape({
+        id: string().required().length(36),
+        extended: _boolean()
+      })
+    }
+  },
+  whatsapp: {
+    v1: {
+      send: object().shape({
+        to: string().required().min(11).max(14).matches(/^\d+$/, 'Invalid Phone Number'),
+        txt: string().required().min(1).max(10000),
+        from: string().min(1),
+        file: string().min(1).max(256),
+        tag: string().min(1).max(36)
+      }),
+      webhook: object().shape({
+        url: string().required().min(1).matches(URL_REGEXP, 'Invalid URL')
+      }),
+      status: object().shape({
+        id: string().required().length(36),
+        extended: _boolean()
+      })
+    }
   }
 };
 var Modules = {
@@ -492,6 +542,10 @@ var Modules = {
         status: {
           args: ['params'],
           method: 'GET'
+        },
+        receive: {
+          args: ['params'],
+          method: 'POST'
         }
       }
     }
@@ -599,6 +653,40 @@ var Modules = {
     versions: {
       v1: {
         send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        status: {
+          args: ['params'],
+          method: 'GET'
+        }
+      }
+    }
+  },
+  vk: {
+    schema: ValidationSchema.vk,
+    versions: {
+      v1: {
+        send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        status: {
+          args: ['params'],
+          method: 'GET'
+        }
+      }
+    }
+  },
+  whatsapp: {
+    schema: ValidationSchema.whatsapp,
+    versions: {
+      v1: {
+        send: {
+          args: ['params'],
+          method: 'POST'
+        },
+        webhook: {
           args: ['params'],
           method: 'POST'
         },

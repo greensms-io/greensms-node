@@ -6,13 +6,13 @@ const { expect } = chai;
 
 chai.use(chaiAsPromise);
 
-describe('Pay', function() {
+describe('Pay', function () {
 
   let requestId = null;
 
-  it('should have a key request_id', async function() {
+  it('should have a key request_id', async function () {
     const data = await greenSmsInstance.pay.send({
-      to: randomPhone(),
+      to: randomPhone().toString(),
       amount: 10,
       tag: 'MochaTest',
     });
@@ -21,11 +21,11 @@ describe('Pay', function() {
 
   });
 
-  it('should throw an Error if to is not specified', async function() {
+  it('should throw an Error if to is not specified', async function () {
     await expect(greenSmsInstance.pay.send()).to.be.rejectedWith(Error);
   });
 
-  it('should have a key status', async function() {
+  it('should have a key status', async function () {
 
     await timeout(2000);
 
