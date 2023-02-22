@@ -4,7 +4,7 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/greensms-ru/greensms-node)
 ![node-current](https://img.shields.io/node/v/greensms)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greensms-ru/greensms-node/Node.js%20Package)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/greensms-ru/greensms-node/node.js.yml?branch=main)
 ![Coveralls github](https://img.shields.io/coveralls/github/greensms-ru/greensms-node)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bda5e78fb51a4c24b2935d93369df539)](https://www.codacy.com/gh/greensms-ru/greensms-node/dashboard?utm_source=github.com&utm_medium=referral&utm_content=greensms-ru/greensms-node&utm_campaign=Badge_Grade)
 
