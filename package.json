@@ -1,6 +1,6 @@
 {
   "name": "greensms",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "GREENSMS API: SMS, Call, Voice, VK, WhatsApp, Viber, HLR, Pay",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
