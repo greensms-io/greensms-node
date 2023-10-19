@@ -1,51 +1,34 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import { getBabelOutputPlugin } from '@rollup/plugin-babel';
-import filesize from 'rollup-plugin-filesize';
+import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts';
-import { terser } from 'rollup-plugin-terser';
-import { eslint } from 'rollup-plugin-eslint';
-
-import pkg from './package.json';
+import filesize from 'rollup-plugin-filesize';
 
 export default [
+  // {
+  //   input: './index.d.ts',
+  //   output: [{ file: 'dist/index.d.ts', format: 'es' }],
+  //   plugins: [dts()],
+  // },
   {
-    input: './index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'es' }],
-    plugins: [dts()],
-  },
-  {
-    input: 'lib/index.js',
+    input: 'lib/index.ts',
     output: [
       {
-        file: pkg.main,
+        file: 'dist/index.cjs.js',
         format: 'cjs',
         exports: 'auto',
         compact: true,
       },
       {
-        file: pkg.module,
+        file: 'dist/index.esm.js',
         format: 'esm', // the preferred format
         exports: 'auto',
-        name: pkg.settings.moduleName,
+        name: 'greensms',
         compact: true,
       },
     ],
-    external: [...Object.keys(pkg.dependencies || {})],
+    external: ['axios', 'humps', 'qs', 'yup'],
     plugins: [
-      resolve(),
-      commonjs(),
+      esbuild(),
       filesize(),
-      getBabelOutputPlugin({
-        presets: ['@babel/preset-env'],
-      }),
-      eslint({
-        fix: true,
-        // throwOnError: true,
-      }),
-      ...pkg.settings.minify ? [
-        terser(),
-      ] : [],
     ],
   },
 ];

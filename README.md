@@ -27,7 +27,7 @@ const GreenSMS = require("greensms");
 // Register at my.greeensms.ru first
 const client = new GreenSMS({ user: "test", pass: "test" });
 
-client.sms
+client.sms.v1
   .send({
     to: "71231234567",
     txt: "Message to deliver",
@@ -51,7 +51,7 @@ const GreenSMS = require("greensms");
 
 const client = new GreenSMS({ token: "token" });
 
-client.account
+client.account.v1
   .balance()
   .then((response) => {
     console.log("Balance ", response.balance);
@@ -61,25 +61,9 @@ client.account
   });
 ```
 
-### Callback Example
-
-```javascript
-const GreenSMS = require("greensms");
-// Register at my.greeensms.ru first
-const client = new GreenSMS({ user: "test", pass: "test" });
-
-function cb(err, response) {
-  console.error("Error ", err);
-  console.log("Response", response);
-}
-
-greenSmsInstance.account.balance(cb);
-```
-
 ## Compatibility
 
 `greensms-node` is compatible with Node.js 12+ and tested until 19.x.
-
 
 ## Methods
 
@@ -87,7 +71,6 @@ greenSmsInstance.account.balance(cb);
 - All methods support Promises, Async/Await and Callbacks.
 - Each API Function is available as `MODULE.FUNCTION()`
 - Parameters for each API can be referred from [here][apidocs]
-- Response keys by default are available in `snake_case`. If you want to use `camelCase`, then pass `camelCaseResponse: true`, in the constructor
 
 ## Handling Exceptions
 
