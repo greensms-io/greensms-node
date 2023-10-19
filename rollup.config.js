@@ -1,13 +1,7 @@
 import esbuild from 'rollup-plugin-esbuild'
-import dts from 'rollup-plugin-dts';
 import filesize from 'rollup-plugin-filesize';
 
 export default [
-  // {
-  //   input: './index.d.ts',
-  //   output: [{ file: 'dist/index.d.ts', format: 'es' }],
-  //   plugins: [dts()],
-  // },
   {
     input: 'lib/index.ts',
     output: [
