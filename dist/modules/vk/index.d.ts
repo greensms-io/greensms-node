@@ -1,1 +1,0 @@
-export { Vk } from './vk';

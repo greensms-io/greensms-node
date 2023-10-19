@@ -1,1 +1,0 @@
-export { WhoIs } from './whois';

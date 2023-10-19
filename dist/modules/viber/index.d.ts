@@ -1,1 +1,0 @@
-export { Viber } from './viber';

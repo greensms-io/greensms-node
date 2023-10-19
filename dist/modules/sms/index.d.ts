@@ -1,1 +1,0 @@
-export { Sms } from './sms';
