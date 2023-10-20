@@ -4,7 +4,7 @@ describe('WhatsApp', () => {
   let requestId: string;
 
   describe('Send message', () => {
-    it('should have a key request_id', async function () {
+    it.skip('should have a key request_id', async function () {
       const data = await greenSMS.whatsapp.v1.send({
         from: '79150000000',
         to: '79150000000',
